@@ -1,0 +1,3795 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.67+post (git sha1 b8e7da6f40ae8f552c116bf6c359b07c6533e159, Release, AppleClang clang++ 21.0.0.21000099)
+
+-- Executing script file `scripts/yosys_synth.tcl' --
+
+1. Executing Verilog-2005 frontend: rtl/fp_adder.v
+Parsing Verilog input from `rtl/fp_adder.v' to AST representation.
+Generating RTLIL representation for module `\fp_adder'.
+rtl/fp_adder.v:636: Warning: Range select out of bounds on signal `\rounded_mant': Setting result bit to undef.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/fp_argmax.v
+Parsing Verilog input from `rtl/fp_argmax.v' to AST representation.
+Generating RTLIL representation for module `\fp_argmax'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: rtl/fp_layer.v
+Parsing Verilog input from `rtl/fp_layer.v' to AST representation.
+Generating RTLIL representation for module `\fp_layer'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: rtl/fp_mac.v
+Parsing Verilog input from `rtl/fp_mac.v' to AST representation.
+Generating RTLIL representation for module `\fp_mac'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: rtl/fp_multiplier.v
+Parsing Verilog input from `rtl/fp_multiplier.v' to AST representation.
+Generating RTLIL representation for module `\fp_multiplier'.
+Successfully finished Verilog frontend.
+
+6. Executing Verilog-2005 frontend: rtl/fp_neuron.v
+Parsing Verilog input from `rtl/fp_neuron.v' to AST representation.
+Generating RTLIL representation for module `\fp_neuron'.
+Successfully finished Verilog frontend.
+
+7. Executing Verilog-2005 frontend: rtl/fp_relu.v
+Parsing Verilog input from `rtl/fp_relu.v' to AST representation.
+Generating RTLIL representation for module `\fp_relu'.
+Successfully finished Verilog frontend.
+
+8. Executing Verilog-2005 frontend: rtl/fp_network.v
+Parsing Verilog input from `rtl/fp_network.v' to AST representation.
+Generating RTLIL representation for module `\fp_network'.
+Successfully finished Verilog frontend.
+
+9. Executing HIERARCHY pass (managing design hierarchy).
+
+9.1. Analyzing design hierarchy..
+Top module:  \fp_network
+Used module:     \fp_argmax
+Used module:     \fp_adder
+Used module:     \fp_multiplier
+Used module:     \fp_layer
+Used module:         \fp_neuron
+Used module:             \fp_relu
+
+9.2. Analyzing design hierarchy..
+Top module:  \fp_network
+Used module:     \fp_argmax
+Used module:     \fp_adder
+Used module:     \fp_multiplier
+Used module:     \fp_layer
+Used module:         \fp_neuron
+Used module:             \fp_relu
+Removing unused module `\fp_mac'.
+Removed 1 unused modules.
+
+10. Executing PROC pass (convert processes to netlists).
+
+10.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+10.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$rtl/fp_relu.v:29$441 in module fp_relu.
+Marked 1 switch rules as full_case in process $proc$rtl/fp_neuron.v:117$439 in module fp_neuron.
+Marked 1 switch rules as full_case in process $proc$rtl/fp_multiplier.v:463$437 in module fp_multiplier.
+Marked 1 switch rules as full_case in process $proc$rtl/fp_multiplier.v:439$435 in module fp_multiplier.
+Marked 14 switch rules as full_case in process $proc$rtl/fp_multiplier.v:109$381 in module fp_multiplier.
+Marked 1 switch rules as full_case in process $proc$rtl/fp_network.v:494$448 in module fp_network.
+Marked 1 switch rules as full_case in process $proc$rtl/fp_network.v:390$446 in module fp_network.
+Marked 1 switch rules as full_case in process $proc$rtl/fp_network.v:284$444 in module fp_network.
+Marked 1 switch rules as full_case in process $proc$rtl/fp_argmax.v:156$377 in module fp_argmax.
+Marked 12 switch rules as full_case in process $proc$rtl/fp_argmax.v:121$308 in module fp_argmax.
+Marked 1 switch rules as full_case in process $proc$rtl/fp_adder.v:736$303 in module fp_adder.
+Marked 1 switch rules as full_case in process $proc$rtl/fp_adder.v:704$301 in module fp_adder.
+Marked 70 switch rules as full_case in process $proc$rtl/fp_adder.v:289$6 in module fp_adder.
+Removed a total of 0 dead cases.
+
+10.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 23 redundant assignments.
+Promoted 75 assignments to connections.
+
+10.4. Executing PROC_INIT pass (extract init attributes).
+
+10.5. Executing PROC_ARST pass (detect async resets in processes).
+
+10.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~109 debug messages>
+
+10.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\fp_relu.$proc$rtl/fp_relu.v:29$441'.
+     1/2: $0\valid_out[0:0]
+     2/2: $0\data_out[31:0]
+Creating decoders for process `\fp_neuron.$proc$rtl/fp_neuron.v:117$439'.
+     1/3: $0\bias_d3[31:0]
+     2/3: $0\bias_d2[31:0]
+     3/3: $0\bias_d1[31:0]
+Creating decoders for process `\fp_multiplier.$proc$rtl/fp_multiplier.v:463$437'.
+     1/2: $0\valid_out[0:0]
+     2/2: $0\product[31:0]
+Creating decoders for process `\fp_multiplier.$proc$rtl/fp_multiplier.v:439$435'.
+     1/3: $0\valid_reg[0:0]
+     2/3: $0\b_reg[31:0]
+     3/3: $0\a_reg[31:0]
+Creating decoders for process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+     1/86: $8\result_comb[31:0]
+     2/86: $7\result_comb[31:0]
+     3/86: $10\result_exp[7:0]
+     4/86: $9\result_exp[7:0]
+     5/86: $8\exponent_temp[31:0]
+     6/86: $8\rounded_mant[24:0]
+     7/86: $7\rounded_mant[24:0]
+     8/86: $8\result_exp[7:0]
+     9/86: $7\result_exp[7:0]
+    10/86: $7\exponent_temp[31:0]
+    11/86: $7\sticky_bit[0:0]
+    12/86: $7\round_bit[0:0]
+    13/86: $7\guard_bit[0:0]
+    14/86: $7\normalized_mant[23:0]
+    15/86: $6\result_comb[31:0]
+    16/86: $6\exponent_temp[31:0]
+    17/86: $6\normalized_mant[23:0]
+    18/86: $6\mant_product[47:0]
+    19/86: $6\sticky_bit[0:0]
+    20/86: $6\round_bit[0:0]
+    21/86: $6\guard_bit[0:0]
+    22/86: $6\rounded_mant[24:0]
+    23/86: $6\result_sign[0:0]
+    24/86: $6\result_exp[7:0]
+    25/86: $6\mant_b[23:0]
+    26/86: $6\mant_a[23:0]
+    27/86: $5\result_comb[31:0]
+    28/86: $5\exponent_temp[31:0]
+    29/86: $5\normalized_mant[23:0]
+    30/86: $5\mant_product[47:0]
+    31/86: $5\sticky_bit[0:0]
+    32/86: $5\round_bit[0:0]
+    33/86: $5\guard_bit[0:0]
+    34/86: $5\rounded_mant[24:0]
+    35/86: $5\result_sign[0:0]
+    36/86: $5\result_exp[7:0]
+    37/86: $5\mant_b[23:0]
+    38/86: $5\mant_a[23:0]
+    39/86: $4\result_comb[31:0]
+    40/86: $4\exponent_temp[31:0]
+    41/86: $4\normalized_mant[23:0]
+    42/86: $4\mant_product[47:0]
+    43/86: $4\sticky_bit[0:0]
+    44/86: $4\round_bit[0:0]
+    45/86: $4\guard_bit[0:0]
+    46/86: $4\rounded_mant[24:0]
+    47/86: $4\result_sign[0:0]
+    48/86: $4\result_exp[7:0]
+    49/86: $4\mant_b[23:0]
+    50/86: $4\mant_a[23:0]
+    51/86: $3\result_comb[31:0]
+    52/86: $3\exponent_temp[31:0]
+    53/86: $3\normalized_mant[23:0]
+    54/86: $3\mant_product[47:0]
+    55/86: $3\sticky_bit[0:0]
+    56/86: $3\round_bit[0:0]
+    57/86: $3\guard_bit[0:0]
+    58/86: $3\rounded_mant[24:0]
+    59/86: $3\result_sign[0:0]
+    60/86: $3\result_exp[7:0]
+    61/86: $3\mant_b[23:0]
+    62/86: $3\mant_a[23:0]
+    63/86: $2\result_comb[31:0]
+    64/86: $2\exponent_temp[31:0]
+    65/86: $2\normalized_mant[23:0]
+    66/86: $2\mant_product[47:0]
+    67/86: $2\sticky_bit[0:0]
+    68/86: $2\round_bit[0:0]
+    69/86: $2\guard_bit[0:0]
+    70/86: $2\rounded_mant[24:0]
+    71/86: $2\result_sign[0:0]
+    72/86: $2\result_exp[7:0]
+    73/86: $2\mant_b[23:0]
+    74/86: $2\mant_a[23:0]
+    75/86: $1\result_comb[31:0]
+    76/86: $1\exponent_temp[31:0]
+    77/86: $1\normalized_mant[23:0]
+    78/86: $1\mant_product[47:0]
+    79/86: $1\sticky_bit[0:0]
+    80/86: $1\round_bit[0:0]
+    81/86: $1\guard_bit[0:0]
+    82/86: $1\rounded_mant[24:0]
+    83/86: $1\result_sign[0:0]
+    84/86: $1\result_exp[7:0]
+    85/86: $1\mant_b[23:0]
+    86/86: $1\mant_a[23:0]
+Creating decoders for process `\fp_network.$proc$rtl/fp_network.v:494$448'.
+     1/3: $0\ob2_d3[31:0]
+     2/3: $0\ob2_d2[31:0]
+     3/3: $0\ob2_d1[31:0]
+Creating decoders for process `\fp_network.$proc$rtl/fp_network.v:390$446'.
+     1/3: $0\ob1_d3[31:0]
+     2/3: $0\ob1_d2[31:0]
+     3/3: $0\ob1_d1[31:0]
+Creating decoders for process `\fp_network.$proc$rtl/fp_network.v:284$444'.
+     1/3: $0\ob0_d3[31:0]
+     2/3: $0\ob0_d2[31:0]
+     3/3: $0\ob0_d1[31:0]
+Creating decoders for process `\fp_argmax.$proc$rtl/fp_argmax.v:156$377'.
+     1/2: $0\valid_out[0:0]
+     2/2: $0\index[1:0]
+Creating decoders for process `\fp_argmax.$proc$rtl/fp_argmax.v:121$308'.
+     1/19: $3\max_index[1:0]
+     2/19: $4\fp_greater$func$rtl/fp_argmax.v:146$307.$result[0:0]$372
+     3/19: $3\fp_greater$func$rtl/fp_argmax.v:146$307.$result[0:0]$370
+     4/19: $2\fp_greater$func$rtl/fp_argmax.v:146$307.$result[0:0]$366
+     5/19: $2\max_index[1:0]
+     6/19: $1\fp_greater$func$rtl/fp_argmax.v:146$307.mag_B[30:0]$362
+     7/19: $1\fp_greater$func$rtl/fp_argmax.v:146$307.mag_A[30:0]$361
+     8/19: $1\fp_greater$func$rtl/fp_argmax.v:146$307.sign_B[0:0]$360
+     9/19: $1\fp_greater$func$rtl/fp_argmax.v:146$307.sign_A[0:0]$359
+    10/19: $1\fp_greater$func$rtl/fp_argmax.v:146$307.B[31:0]$358
+    11/19: $1\fp_greater$func$rtl/fp_argmax.v:146$307.A[31:0]$357
+    12/19: $1\fp_greater$func$rtl/fp_argmax.v:146$307.$result[0:0]$356
+    13/19: $3\fp_greater$func$rtl/fp_argmax.v:141$306.$result[0:0]$351
+    14/19: $2\fp_greater$func$rtl/fp_argmax.v:141$306.$result[0:0]$349
+    15/19: $1\fp_greater$func$rtl/fp_argmax.v:141$306.$result[0:0]$345
+    16/19: $1\max_index[1:0]
+    17/19: $3\fp_greater$func$rtl/fp_argmax.v:133$305.$result[0:0]$339
+    18/19: $2\fp_greater$func$rtl/fp_argmax.v:133$305.$result[0:0]$337
+    19/19: $1\fp_greater$func$rtl/fp_argmax.v:133$305.$result[0:0]$333
+Creating decoders for process `\fp_adder.$proc$rtl/fp_adder.v:736$303'.
+     1/2: $0\valid_out_reg[0:0]
+     2/2: $0\sum_reg[31:0]
+Creating decoders for process `\fp_adder.$proc$rtl/fp_adder.v:704$301'.
+     1/3: $0\valid_reg[0:0]
+     2/3: $0\b_reg[31:0]
+     3/3: $0\a_reg[31:0]
+Creating decoders for process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+     1/195: $5\result_comb[31:0]
+     2/195: $4\result_comb[31:0]
+     3/195: $7\result_exp[7:0]
+     4/195: $5\rounded_mant[23:0]
+     5/195: $4\rounded_mant[23:0]
+     6/195: $3\result_comb[31:0]
+     7/195: $3\sticky_bit[0:0]
+     8/195: $3\round_bit[0:0]
+     9/195: $3\guard_bit[0:0]
+    10/195: $3\rounded_mant[23:0]
+    11/195: $6\result_exp[7:0]
+    12/195: $5\shift_amount[31:0]
+    13/195: $31\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$288
+    14/195: $31\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$287
+    15/195: $30\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$284
+    16/195: $30\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$283
+    17/195: $29\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$280
+    18/195: $29\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$279
+    19/195: $28\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$276
+    20/195: $28\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$275
+    21/195: $27\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$272
+    22/195: $27\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$271
+    23/195: $26\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$268
+    24/195: $26\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$267
+    25/195: $25\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$264
+    26/195: $25\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$263
+    27/195: $24\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$260
+    28/195: $24\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$259
+    29/195: $23\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$256
+    30/195: $23\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$255
+    31/195: $22\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$252
+    32/195: $22\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$251
+    33/195: $21\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$248
+    34/195: $21\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$247
+    35/195: $20\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$244
+    36/195: $20\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$243
+    37/195: $19\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$240
+    38/195: $19\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$239
+    39/195: $18\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$236
+    40/195: $18\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$235
+    41/195: $17\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$232
+    42/195: $17\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$231
+    43/195: $16\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$228
+    44/195: $16\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$227
+    45/195: $15\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$224
+    46/195: $15\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$223
+    47/195: $14\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$220
+    48/195: $14\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$219
+    49/195: $13\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$216
+    50/195: $13\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$215
+    51/195: $12\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$212
+    52/195: $12\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$211
+    53/195: $11\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$208
+    54/195: $11\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$207
+    55/195: $10\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$204
+    56/195: $10\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$203
+    57/195: $9\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$200
+    58/195: $9\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$199
+    59/195: $8\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$196
+    60/195: $8\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$195
+    61/195: $7\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$192
+    62/195: $7\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$191
+    63/195: $6\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$188
+    64/195: $6\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$187
+    65/195: $5\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$184
+    66/195: $5\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$183
+    67/195: $4\result_sign[0:0]
+    68/195: $5\result_exp[7:0]
+    69/195: $5\normalized[26:0]
+    70/195: $4\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$180
+    71/195: $4\leading_zero_count$func$rtl/fp_adder.v:551$5.k[31:0]$179
+    72/195: $4\leading_zero_count$func$rtl/fp_adder.v:551$5.value[26:0]$178
+    73/195: $4\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$177
+    74/195: $4\shift_amount[31:0]
+    75/195: $4\normalized[26:0] [26:1]
+    76/195: $4\result_exp[7:0]
+    77/195: $4\normalized[26:0] [0]
+    78/195: $3\normalized[26:0]
+    79/195: $3\result_exp[7:0]
+    80/195: $3\result_sign[0:0]
+    81/195: $3\mant_result[27:0]
+    82/195: $3\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$171
+    83/195: $3\leading_zero_count$func$rtl/fp_adder.v:551$5.k[31:0]$170
+    84/195: $3\leading_zero_count$func$rtl/fp_adder.v:551$5.value[26:0]$169
+    85/195: $3\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$168
+    86/195: $3\shift_amount[31:0]
+    87/195: $31\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$164
+    88/195: $30\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$161
+    89/195: $29\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$158
+    90/195: $28\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$155
+    91/195: $27\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$152
+    92/195: $26\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$149
+    93/195: $25\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$146
+    94/195: $24\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$143
+    95/195: $23\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$140
+    96/195: $22\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$137
+    97/195: $21\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$134
+    98/195: $20\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$131
+    99/195: $19\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$128
+   100/195: $18\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$125
+   101/195: $17\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$122
+   102/195: $16\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$119
+   103/195: $15\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$116
+   104/195: $14\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$113
+   105/195: $13\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$110
+   106/195: $12\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$107
+   107/195: $11\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$104
+   108/195: $10\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$101
+   109/195: $9\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$98
+   110/195: $8\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$95
+   111/195: $7\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$92
+   112/195: $6\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$89
+   113/195: $5\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$86
+   114/195: $4\shift_right_sticky$func$rtl/fp_adder.v:449$4.$result[26:0]$53
+   115/195: $4\shift_right_sticky$func$rtl/fp_adder.v:449$4.shifted[26:0]$54 [0]
+   116/195: $4\shift_right_sticky$func$rtl/fp_adder.v:449$4.shifted[26:0]$54 [26:1]
+   117/195: $4\shift_right_sticky$func$rtl/fp_adder.v:449$4.j[31:0]$56
+   118/195: $4\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$55
+   119/195: $3\shift_right_sticky$func$rtl/fp_adder.v:449$4.$result[26:0]$48
+   120/195: $3\shift_right_sticky$func$rtl/fp_adder.v:449$4.j[31:0]$51
+   121/195: $3\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$50
+   122/195: $3\shift_right_sticky$func$rtl/fp_adder.v:449$4.shifted[26:0]$49
+   123/195: $5\sign_large[0:0]
+   124/195: $5\exp_small[7:0]
+   125/195: $5\exp_large[7:0]
+   126/195: $5\mant_small[23:0]
+   127/195: $5\mant_large[23:0]
+   128/195: $4\sign_large[0:0]
+   129/195: $4\exp_small[7:0]
+   130/195: $4\exp_large[7:0]
+   131/195: $4\mant_small[23:0]
+   132/195: $4\mant_large[23:0]
+   133/195: $3\sign_large[0:0]
+   134/195: $3\exp_small[7:0]
+   135/195: $3\exp_large[7:0]
+   136/195: $3\mant_small[23:0]
+   137/195: $3\mant_large[23:0]
+   138/195: $2\result_comb[31:0]
+   139/195: $2\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$42
+   140/195: $2\leading_zero_count$func$rtl/fp_adder.v:551$5.k[31:0]$41
+   141/195: $2\leading_zero_count$func$rtl/fp_adder.v:551$5.value[26:0]$40
+   142/195: $2\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$39
+   143/195: $2\shift_right_sticky$func$rtl/fp_adder.v:449$4.j[31:0]$38
+   144/195: $2\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$37
+   145/195: $2\shift_right_sticky$func$rtl/fp_adder.v:449$4.shifted[26:0]$36
+   146/195: $2\shift_right_sticky$func$rtl/fp_adder.v:449$4.shift[31:0]$35
+   147/195: $2\shift_right_sticky$func$rtl/fp_adder.v:449$4.value[26:0]$34
+   148/195: $2\shift_right_sticky$func$rtl/fp_adder.v:449$4.$result[26:0]$33
+   149/195: $2\shift_amount[31:0]
+   150/195: $2\sticky_bit[0:0]
+   151/195: $2\round_bit[0:0]
+   152/195: $2\guard_bit[0:0]
+   153/195: $2\rounded_mant[23:0]
+   154/195: $2\normalized[26:0]
+   155/195: $2\mant_result[27:0]
+   156/195: $2\aligned_small[26:0]
+   157/195: $2\aligned_large[26:0]
+   158/195: $2\result_sign[0:0]
+   159/195: $2\sign_large[0:0]
+   160/195: $2\result_exp[7:0]
+   161/195: $2\exp_small[7:0]
+   162/195: $2\exp_large[7:0]
+   163/195: $2\mant_small[23:0]
+   164/195: $2\mant_large[23:0]
+   165/195: $2\mant_b[23:0]
+   166/195: $2\mant_a[23:0]
+   167/195: $1\result_comb[31:0]
+   168/195: $1\leading_zero_count$func$rtl/fp_adder.v:551$5.found[0:0]$29
+   169/195: $1\leading_zero_count$func$rtl/fp_adder.v:551$5.k[31:0]$28
+   170/195: $1\leading_zero_count$func$rtl/fp_adder.v:551$5.value[26:0]$27
+   171/195: $1\leading_zero_count$func$rtl/fp_adder.v:551$5.$result[31:0]$26
+   172/195: $1\shift_right_sticky$func$rtl/fp_adder.v:449$4.j[31:0]$25
+   173/195: $1\shift_right_sticky$func$rtl/fp_adder.v:449$4.sticky[0:0]$24
+   174/195: $1\shift_right_sticky$func$rtl/fp_adder.v:449$4.shifted[26:0]$23
+   175/195: $1\shift_right_sticky$func$rtl/fp_adder.v:449$4.shift[31:0]$22
+   176/195: $1\shift_right_sticky$func$rtl/fp_adder.v:449$4.value[26:0]$21
+   177/195: $1\shift_right_sticky$func$rtl/fp_adder.v:449$4.$result[26:0]$20
+   178/195: $1\shift_amount[31:0]
+   179/195: $1\sticky_bit[0:0]
+   180/195: $1\round_bit[0:0]
+   181/195: $1\guard_bit[0:0]
+   182/195: $1\rounded_mant[23:0]
+   183/195: $1\normalized[26:0]
+   184/195: $1\mant_result[27:0]
+   185/195: $1\aligned_small[26:0]
+   186/195: $1\aligned_large[26:0]
+   187/195: $1\result_sign[0:0]
+   188/195: $1\sign_large[0:0]
+   189/195: $1\result_exp[7:0]
+   190/195: $1\exp_small[7:0]
+   191/195: $1\exp_large[7:0]
+   192/195: $1\mant_small[23:0]
+   193/195: $1\mant_large[23:0]
+   194/195: $1\mant_b[23:0]
+   195/195: $1\mant_a[23:0]
+
+10.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\fp_multiplier.\sign_a' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\sign_b' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\exp_a' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\exp_b' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\frac_a' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\frac_b' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\mant_a' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\mant_b' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\result_exp' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\result_sign' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\rounded_mant' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\guard_bit' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\round_bit' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\sticky_bit' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\result_comb' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\mant_product' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\normalized_mant' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_multiplier.\exponent_temp' from process `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+No latch inferred for signal `\fp_argmax.\max_index' from process `\fp_argmax.$proc$rtl/fp_argmax.v:121$308'.
+No latch inferred for signal `\fp_adder.\sign_a' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\sign_b' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\exp_a' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\exp_b' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\frac_a' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\frac_b' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\mant_a' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\mant_b' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\mant_large' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\mant_small' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\exp_large' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\exp_small' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\result_exp' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\sign_large' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\result_sign' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\aligned_large' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\aligned_small' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\mant_result' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\normalized' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\rounded_mant' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\guard_bit' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\round_bit' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\sticky_bit' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\result_comb' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+No latch inferred for signal `\fp_adder.\shift_amount' from process `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+
+10.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\fp_relu.\valid_out' using process `\fp_relu.$proc$rtl/fp_relu.v:29$441'.
+  created $dff cell `$procdff$3788' with positive edge clock.
+Creating register for signal `\fp_relu.\data_out' using process `\fp_relu.$proc$rtl/fp_relu.v:29$441'.
+  created $dff cell `$procdff$3789' with positive edge clock.
+Creating register for signal `\fp_neuron.\bias_d1' using process `\fp_neuron.$proc$rtl/fp_neuron.v:117$439'.
+  created $dff cell `$procdff$3790' with positive edge clock.
+Creating register for signal `\fp_neuron.\bias_d2' using process `\fp_neuron.$proc$rtl/fp_neuron.v:117$439'.
+  created $dff cell `$procdff$3791' with positive edge clock.
+Creating register for signal `\fp_neuron.\bias_d3' using process `\fp_neuron.$proc$rtl/fp_neuron.v:117$439'.
+  created $dff cell `$procdff$3792' with positive edge clock.
+Creating register for signal `\fp_multiplier.\valid_out' using process `\fp_multiplier.$proc$rtl/fp_multiplier.v:463$437'.
+  created $dff cell `$procdff$3793' with positive edge clock.
+Creating register for signal `\fp_multiplier.\product' using process `\fp_multiplier.$proc$rtl/fp_multiplier.v:463$437'.
+  created $dff cell `$procdff$3794' with positive edge clock.
+Creating register for signal `\fp_multiplier.\a_reg' using process `\fp_multiplier.$proc$rtl/fp_multiplier.v:439$435'.
+  created $dff cell `$procdff$3795' with positive edge clock.
+Creating register for signal `\fp_multiplier.\b_reg' using process `\fp_multiplier.$proc$rtl/fp_multiplier.v:439$435'.
+  created $dff cell `$procdff$3796' with positive edge clock.
+Creating register for signal `\fp_multiplier.\valid_reg' using process `\fp_multiplier.$proc$rtl/fp_multiplier.v:439$435'.
+  created $dff cell `$procdff$3797' with positive edge clock.
+Creating register for signal `\fp_network.\ob2_d1' using process `\fp_network.$proc$rtl/fp_network.v:494$448'.
+  created $dff cell `$procdff$3798' with positive edge clock.
+Creating register for signal `\fp_network.\ob2_d2' using process `\fp_network.$proc$rtl/fp_network.v:494$448'.
+  created $dff cell `$procdff$3799' with positive edge clock.
+Creating register for signal `\fp_network.\ob2_d3' using process `\fp_network.$proc$rtl/fp_network.v:494$448'.
+  created $dff cell `$procdff$3800' with positive edge clock.
+Creating register for signal `\fp_network.\ob1_d1' using process `\fp_network.$proc$rtl/fp_network.v:390$446'.
+  created $dff cell `$procdff$3801' with positive edge clock.
+Creating register for signal `\fp_network.\ob1_d2' using process `\fp_network.$proc$rtl/fp_network.v:390$446'.
+  created $dff cell `$procdff$3802' with positive edge clock.
+Creating register for signal `\fp_network.\ob1_d3' using process `\fp_network.$proc$rtl/fp_network.v:390$446'.
+  created $dff cell `$procdff$3803' with positive edge clock.
+Creating register for signal `\fp_network.\ob0_d1' using process `\fp_network.$proc$rtl/fp_network.v:284$444'.
+  created $dff cell `$procdff$3804' with positive edge clock.
+Creating register for signal `\fp_network.\ob0_d2' using process `\fp_network.$proc$rtl/fp_network.v:284$444'.
+  created $dff cell `$procdff$3805' with positive edge clock.
+Creating register for signal `\fp_network.\ob0_d3' using process `\fp_network.$proc$rtl/fp_network.v:284$444'.
+  created $dff cell `$procdff$3806' with positive edge clock.
+Creating register for signal `\fp_argmax.\valid_out' using process `\fp_argmax.$proc$rtl/fp_argmax.v:156$377'.
+  created $dff cell `$procdff$3807' with positive edge clock.
+Creating register for signal `\fp_argmax.\index' using process `\fp_argmax.$proc$rtl/fp_argmax.v:156$377'.
+  created $dff cell `$procdff$3808' with positive edge clock.
+Creating register for signal `\fp_adder.\sum_reg' using process `\fp_adder.$proc$rtl/fp_adder.v:736$303'.
+  created $dff cell `$procdff$3809' with positive edge clock.
+Creating register for signal `\fp_adder.\valid_out_reg' using process `\fp_adder.$proc$rtl/fp_adder.v:736$303'.
+  created $dff cell `$procdff$3810' with positive edge clock.
+Creating register for signal `\fp_adder.\a_reg' using process `\fp_adder.$proc$rtl/fp_adder.v:704$301'.
+  created $dff cell `$procdff$3811' with positive edge clock.
+Creating register for signal `\fp_adder.\b_reg' using process `\fp_adder.$proc$rtl/fp_adder.v:704$301'.
+  created $dff cell `$procdff$3812' with positive edge clock.
+Creating register for signal `\fp_adder.\valid_reg' using process `\fp_adder.$proc$rtl/fp_adder.v:704$301'.
+  created $dff cell `$procdff$3813' with positive edge clock.
+
+10.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+10.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 2 empty switches in `\fp_relu.$proc$rtl/fp_relu.v:29$441'.
+Removing empty process `fp_relu.$proc$rtl/fp_relu.v:29$441'.
+Found and cleaned up 1 empty switch in `\fp_neuron.$proc$rtl/fp_neuron.v:117$439'.
+Removing empty process `fp_neuron.$proc$rtl/fp_neuron.v:117$439'.
+Found and cleaned up 1 empty switch in `\fp_multiplier.$proc$rtl/fp_multiplier.v:463$437'.
+Removing empty process `fp_multiplier.$proc$rtl/fp_multiplier.v:463$437'.
+Found and cleaned up 1 empty switch in `\fp_multiplier.$proc$rtl/fp_multiplier.v:439$435'.
+Removing empty process `fp_multiplier.$proc$rtl/fp_multiplier.v:439$435'.
+Found and cleaned up 14 empty switches in `\fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+Removing empty process `fp_multiplier.$proc$rtl/fp_multiplier.v:109$381'.
+Found and cleaned up 1 empty switch in `\fp_network.$proc$rtl/fp_network.v:494$448'.
+Removing empty process `fp_network.$proc$rtl/fp_network.v:494$448'.
+Found and cleaned up 1 empty switch in `\fp_network.$proc$rtl/fp_network.v:390$446'.
+Removing empty process `fp_network.$proc$rtl/fp_network.v:390$446'.
+Found and cleaned up 1 empty switch in `\fp_network.$proc$rtl/fp_network.v:284$444'.
+Removing empty process `fp_network.$proc$rtl/fp_network.v:284$444'.
+Found and cleaned up 1 empty switch in `\fp_argmax.$proc$rtl/fp_argmax.v:156$377'.
+Removing empty process `fp_argmax.$proc$rtl/fp_argmax.v:156$377'.
+Found and cleaned up 12 empty switches in `\fp_argmax.$proc$rtl/fp_argmax.v:121$308'.
+Removing empty process `fp_argmax.$proc$rtl/fp_argmax.v:121$308'.
+Found and cleaned up 2 empty switches in `\fp_adder.$proc$rtl/fp_adder.v:736$303'.
+Removing empty process `fp_adder.$proc$rtl/fp_adder.v:736$303'.
+Found and cleaned up 2 empty switches in `\fp_adder.$proc$rtl/fp_adder.v:704$301'.
+Removing empty process `fp_adder.$proc$rtl/fp_adder.v:704$301'.
+Found and cleaned up 70 empty switches in `\fp_adder.$proc$rtl/fp_adder.v:289$6'.
+Removing empty process `fp_adder.$proc$rtl/fp_adder.v:289$6'.
+Cleaned up 109 empty switches.
+
+10.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+<suppressed ~3 debug messages>
+Optimizing module fp_neuron.
+<suppressed ~3 debug messages>
+Optimizing module fp_multiplier.
+<suppressed ~20 debug messages>
+Optimizing module fp_network.
+<suppressed ~9 debug messages>
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+<suppressed ~21 debug messages>
+Optimizing module fp_adder.
+<suppressed ~26 debug messages>
+
+11. Executing OPT pass (performing simple optimizations).
+
+11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+<suppressed ~2 debug messages>
+
+11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 6 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 16 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 417 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 403 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 401 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+<suppressed ~48 debug messages>
+Finding identical cells in module `\fp_network'.
+Computing hashes of 47 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Computing hashes of 45 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+<suppressed ~6 debug messages>
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 62 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 56 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+<suppressed ~18 debug messages>
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 865 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 864 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+<suppressed ~3 debug messages>
+Removed a total of 25 cells.
+
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp_relu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $procmux$454: \data_in -> { 1'0 \data_in [30:0] }
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_neuron..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_multiplier..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port B of cell $procmux$766: $mul$rtl/fp_multiplier.v:234$417_Y [47:24] -> { 1'1 $mul$rtl/fp_multiplier.v:234$417_Y [46:24] }
+      Replacing known input bits on port A of cell $procmux$595: $7\rounded_mant[24:0] -> { 1'0 $7\rounded_mant[24:0] [23:0] }
+      Replacing known input bits on port B of cell $procmux$595: $shr$rtl/fp_multiplier.v:375$430_Y -> { $shr$rtl/fp_multiplier.v:375$430_Y [24] 1'1 $shr$rtl/fp_multiplier.v:375$430_Y [22:0] }
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$1504.
+    dead port 2/2 on $mux $procmux$1504.
+    dead port 1/2 on $mux $procmux$1501.
+    dead port 2/2 on $mux $procmux$1501.
+    dead port 1/2 on $mux $procmux$1498.
+    dead port 2/2 on $mux $procmux$1498.
+    dead port 1/2 on $mux $procmux$1495.
+    dead port 2/2 on $mux $procmux$1495.
+    dead port 1/2 on $mux $procmux$1492.
+    dead port 2/2 on $mux $procmux$1492.
+    dead port 1/2 on $mux $procmux$1489.
+    dead port 2/2 on $mux $procmux$1489.
+    dead port 1/2 on $mux $procmux$1486.
+    dead port 2/2 on $mux $procmux$1486.
+    dead port 1/2 on $mux $procmux$1483.
+    dead port 2/2 on $mux $procmux$1483.
+    dead port 1/2 on $mux $procmux$1480.
+    dead port 2/2 on $mux $procmux$1480.
+    dead port 1/2 on $mux $procmux$1477.
+    dead port 2/2 on $mux $procmux$1477.
+    dead port 1/2 on $mux $procmux$1474.
+    dead port 2/2 on $mux $procmux$1474.
+    dead port 1/2 on $mux $procmux$1471.
+    dead port 2/2 on $mux $procmux$1471.
+    dead port 1/2 on $mux $procmux$1468.
+    dead port 2/2 on $mux $procmux$1468.
+    dead port 1/2 on $mux $procmux$1465.
+    dead port 2/2 on $mux $procmux$1465.
+    dead port 1/2 on $mux $procmux$1462.
+    dead port 2/2 on $mux $procmux$1462.
+    dead port 1/2 on $mux $procmux$1459.
+    dead port 2/2 on $mux $procmux$1459.
+    dead port 1/2 on $mux $procmux$1456.
+    dead port 2/2 on $mux $procmux$1456.
+    dead port 1/2 on $mux $procmux$1453.
+    dead port 2/2 on $mux $procmux$1453.
+    dead port 1/2 on $mux $procmux$1450.
+    dead port 2/2 on $mux $procmux$1450.
+    dead port 1/2 on $mux $procmux$1447.
+    dead port 2/2 on $mux $procmux$1447.
+    dead port 1/2 on $mux $procmux$1444.
+    dead port 2/2 on $mux $procmux$1444.
+    dead port 1/2 on $mux $procmux$1441.
+    dead port 2/2 on $mux $procmux$1441.
+    dead port 1/2 on $mux $procmux$1438.
+    dead port 1/2 on $mux $procmux$1432.
+    dead port 2/2 on $mux $procmux$1432.
+    dead port 1/2 on $mux $procmux$1429.
+    dead port 2/2 on $mux $procmux$1429.
+    dead port 1/2 on $mux $procmux$1426.
+    dead port 2/2 on $mux $procmux$1426.
+    dead port 1/2 on $mux $procmux$1423.
+    dead port 2/2 on $mux $procmux$1423.
+    dead port 1/2 on $mux $procmux$1420.
+    dead port 2/2 on $mux $procmux$1420.
+    dead port 1/2 on $mux $procmux$1417.
+    dead port 2/2 on $mux $procmux$1417.
+    dead port 1/2 on $mux $procmux$1414.
+    dead port 2/2 on $mux $procmux$1414.
+    dead port 1/2 on $mux $procmux$1411.
+    dead port 2/2 on $mux $procmux$1411.
+    dead port 1/2 on $mux $procmux$1408.
+    dead port 2/2 on $mux $procmux$1408.
+    dead port 1/2 on $mux $procmux$1405.
+    dead port 2/2 on $mux $procmux$1405.
+    dead port 1/2 on $mux $procmux$1402.
+    dead port 2/2 on $mux $procmux$1402.
+    dead port 1/2 on $mux $procmux$1399.
+    dead port 2/2 on $mux $procmux$1399.
+    dead port 1/2 on $mux $procmux$1396.
+    dead port 2/2 on $mux $procmux$1396.
+    dead port 1/2 on $mux $procmux$1393.
+    dead port 2/2 on $mux $procmux$1393.
+    dead port 1/2 on $mux $procmux$1390.
+    dead port 2/2 on $mux $procmux$1390.
+    dead port 1/2 on $mux $procmux$1387.
+    dead port 2/2 on $mux $procmux$1387.
+    dead port 1/2 on $mux $procmux$1384.
+    dead port 2/2 on $mux $procmux$1384.
+    dead port 1/2 on $mux $procmux$1381.
+    dead port 2/2 on $mux $procmux$1381.
+    dead port 1/2 on $mux $procmux$1378.
+    dead port 2/2 on $mux $procmux$1378.
+    dead port 1/2 on $mux $procmux$1375.
+    dead port 2/2 on $mux $procmux$1375.
+    dead port 1/2 on $mux $procmux$1372.
+    dead port 2/2 on $mux $procmux$1372.
+    dead port 1/2 on $mux $procmux$1369.
+    dead port 2/2 on $mux $procmux$1369.
+    dead port 1/2 on $mux $procmux$1366.
+    dead port 2/2 on $mux $procmux$1366.
+    dead port 1/2 on $mux $procmux$1363.
+    dead port 2/2 on $mux $procmux$1363.
+    dead port 1/2 on $mux $procmux$1360.
+    dead port 2/2 on $mux $procmux$1360.
+    dead port 1/2 on $mux $procmux$1357.
+    dead port 2/2 on $mux $procmux$1357.
+    dead port 1/2 on $mux $procmux$1354.
+    dead port 2/2 on $mux $procmux$1354.
+    dead port 1/2 on $mux $procmux$1351.
+    dead port 2/2 on $mux $procmux$1351.
+    dead port 1/2 on $mux $procmux$1348.
+    dead port 2/2 on $mux $procmux$1348.
+    dead port 1/2 on $mux $procmux$1345.
+    dead port 2/2 on $mux $procmux$1345.
+    dead port 1/2 on $mux $procmux$1342.
+    dead port 2/2 on $mux $procmux$1342.
+    dead port 1/2 on $mux $procmux$1339.
+    dead port 2/2 on $mux $procmux$1339.
+    dead port 1/2 on $mux $procmux$1336.
+    dead port 2/2 on $mux $procmux$1336.
+    dead port 1/2 on $mux $procmux$1333.
+    dead port 1/2 on $mux $procmux$1330.
+    dead port 1/2 on $mux $procmux$1324.
+    dead port 2/2 on $mux $procmux$1324.
+    dead port 1/2 on $mux $procmux$1321.
+    dead port 2/2 on $mux $procmux$1321.
+    dead port 1/2 on $mux $procmux$1318.
+    dead port 2/2 on $mux $procmux$1318.
+    dead port 1/2 on $mux $procmux$1315.
+    dead port 2/2 on $mux $procmux$1315.
+    dead port 1/2 on $mux $procmux$1312.
+    dead port 2/2 on $mux $procmux$1312.
+    dead port 1/2 on $mux $procmux$1309.
+    dead port 2/2 on $mux $procmux$1309.
+    dead port 1/2 on $mux $procmux$1306.
+    dead port 2/2 on $mux $procmux$1306.
+    dead port 1/2 on $mux $procmux$1303.
+    dead port 2/2 on $mux $procmux$1303.
+    dead port 1/2 on $mux $procmux$1300.
+    dead port 2/2 on $mux $procmux$1300.
+    dead port 1/2 on $mux $procmux$1297.
+    dead port 2/2 on $mux $procmux$1297.
+    dead port 1/2 on $mux $procmux$1294.
+    dead port 2/2 on $mux $procmux$1294.
+    dead port 1/2 on $mux $procmux$1291.
+    dead port 2/2 on $mux $procmux$1291.
+    dead port 1/2 on $mux $procmux$1288.
+    dead port 2/2 on $mux $procmux$1288.
+    dead port 1/2 on $mux $procmux$1285.
+    dead port 2/2 on $mux $procmux$1285.
+    dead port 1/2 on $mux $procmux$1282.
+    dead port 2/2 on $mux $procmux$1282.
+    dead port 1/2 on $mux $procmux$1279.
+    dead port 2/2 on $mux $procmux$1279.
+    dead port 1/2 on $mux $procmux$1276.
+    dead port 2/2 on $mux $procmux$1276.
+    dead port 1/2 on $mux $procmux$1273.
+    dead port 2/2 on $mux $procmux$1273.
+    dead port 1/2 on $mux $procmux$1270.
+    dead port 2/2 on $mux $procmux$1270.
+    dead port 1/2 on $mux $procmux$1267.
+    dead port 2/2 on $mux $procmux$1267.
+    dead port 1/2 on $mux $procmux$1264.
+    dead port 2/2 on $mux $procmux$1264.
+    dead port 1/2 on $mux $procmux$1261.
+    dead port 2/2 on $mux $procmux$1261.
+    dead port 1/2 on $mux $procmux$1258.
+    dead port 2/2 on $mux $procmux$1258.
+    dead port 1/2 on $mux $procmux$1255.
+    dead port 2/2 on $mux $procmux$1255.
+    dead port 1/2 on $mux $procmux$1252.
+    dead port 2/2 on $mux $procmux$1252.
+    dead port 1/2 on $mux $procmux$1249.
+    dead port 2/2 on $mux $procmux$1249.
+    dead port 1/2 on $mux $procmux$1246.
+    dead port 2/2 on $mux $procmux$1246.
+    dead port 1/2 on $mux $procmux$1243.
+    dead port 2/2 on $mux $procmux$1243.
+    dead port 1/2 on $mux $procmux$1240.
+    dead port 2/2 on $mux $procmux$1240.
+    dead port 1/2 on $mux $procmux$1237.
+    dead port 2/2 on $mux $procmux$1237.
+    dead port 1/2 on $mux $procmux$1234.
+    dead port 2/2 on $mux $procmux$1234.
+    dead port 1/2 on $mux $procmux$1231.
+    dead port 2/2 on $mux $procmux$1231.
+    dead port 1/2 on $mux $procmux$1228.
+    dead port 2/2 on $mux $procmux$1228.
+    dead port 1/2 on $mux $procmux$1225.
+    dead port 2/2 on $mux $procmux$1225.
+    dead port 1/2 on $mux $procmux$1222.
+    dead port 2/2 on $mux $procmux$1222.
+    dead port 1/2 on $mux $procmux$1219.
+    dead port 2/2 on $mux $procmux$1219.
+    dead port 1/2 on $mux $procmux$1216.
+    dead port 2/2 on $mux $procmux$1216.
+    dead port 1/2 on $mux $procmux$1213.
+    dead port 2/2 on $mux $procmux$1213.
+    dead port 1/2 on $mux $procmux$1210.
+    dead port 2/2 on $mux $procmux$1210.
+    dead port 1/2 on $mux $procmux$1207.
+    dead port 2/2 on $mux $procmux$1207.
+    dead port 1/2 on $mux $procmux$1204.
+    dead port 2/2 on $mux $procmux$1204.
+    dead port 1/2 on $mux $procmux$1201.
+    dead port 2/2 on $mux $procmux$1201.
+    dead port 1/2 on $mux $procmux$1198.
+    dead port 2/2 on $mux $procmux$1198.
+    dead port 1/2 on $mux $procmux$1195.
+    dead port 2/2 on $mux $procmux$1195.
+    dead port 1/2 on $mux $procmux$1192.
+    dead port 1/2 on $mux $procmux$1189.
+    dead port 1/2 on $mux $procmux$1186.
+    dead port 1/2 on $mux $procmux$1180.
+    dead port 2/2 on $mux $procmux$1180.
+    dead port 1/2 on $mux $procmux$1177.
+    dead port 2/2 on $mux $procmux$1177.
+    dead port 1/2 on $mux $procmux$1174.
+    dead port 2/2 on $mux $procmux$1174.
+    dead port 1/2 on $mux $procmux$1171.
+    dead port 2/2 on $mux $procmux$1171.
+    dead port 1/2 on $mux $procmux$1168.
+    dead port 2/2 on $mux $procmux$1168.
+    dead port 1/2 on $mux $procmux$1165.
+    dead port 2/2 on $mux $procmux$1165.
+    dead port 1/2 on $mux $procmux$1162.
+    dead port 2/2 on $mux $procmux$1162.
+    dead port 1/2 on $mux $procmux$1159.
+    dead port 2/2 on $mux $procmux$1159.
+    dead port 1/2 on $mux $procmux$1156.
+    dead port 2/2 on $mux $procmux$1156.
+    dead port 1/2 on $mux $procmux$1153.
+    dead port 2/2 on $mux $procmux$1153.
+    dead port 1/2 on $mux $procmux$1150.
+    dead port 2/2 on $mux $procmux$1150.
+    dead port 1/2 on $mux $procmux$1147.
+    dead port 2/2 on $mux $procmux$1147.
+    dead port 1/2 on $mux $procmux$1144.
+    dead port 2/2 on $mux $procmux$1144.
+    dead port 1/2 on $mux $procmux$1141.
+    dead port 2/2 on $mux $procmux$1141.
+    dead port 1/2 on $mux $procmux$1138.
+    dead port 2/2 on $mux $procmux$1138.
+    dead port 1/2 on $mux $procmux$1135.
+    dead port 2/2 on $mux $procmux$1135.
+    dead port 1/2 on $mux $procmux$1132.
+    dead port 2/2 on $mux $procmux$1132.
+    dead port 1/2 on $mux $procmux$1129.
+    dead port 2/2 on $mux $procmux$1129.
+    dead port 1/2 on $mux $procmux$1126.
+    dead port 2/2 on $mux $procmux$1126.
+    dead port 1/2 on $mux $procmux$1123.
+    dead port 2/2 on $mux $procmux$1123.
+    dead port 1/2 on $mux $procmux$1120.
+    dead port 2/2 on $mux $procmux$1120.
+    dead port 1/2 on $mux $procmux$1117.
+    dead port 2/2 on $mux $procmux$1117.
+    dead port 1/2 on $mux $procmux$1114.
+    dead port 2/2 on $mux $procmux$1114.
+    dead port 1/2 on $mux $procmux$1111.
+    dead port 2/2 on $mux $procmux$1111.
+    dead port 1/2 on $mux $procmux$1108.
+    dead port 2/2 on $mux $procmux$1108.
+    dead port 1/2 on $mux $procmux$1105.
+    dead port 2/2 on $mux $procmux$1105.
+    dead port 1/2 on $mux $procmux$1102.
+    dead port 2/2 on $mux $procmux$1102.
+    dead port 1/2 on $mux $procmux$1099.
+    dead port 2/2 on $mux $procmux$1099.
+    dead port 1/2 on $mux $procmux$1096.
+    dead port 2/2 on $mux $procmux$1096.
+    dead port 1/2 on $mux $procmux$1093.
+    dead port 2/2 on $mux $procmux$1093.
+    dead port 1/2 on $mux $procmux$1090.
+    dead port 2/2 on $mux $procmux$1090.
+    dead port 1/2 on $mux $procmux$1087.
+    dead port 2/2 on $mux $procmux$1087.
+    dead port 1/2 on $mux $procmux$1084.
+    dead port 2/2 on $mux $procmux$1084.
+    dead port 1/2 on $mux $procmux$1081.
+    dead port 2/2 on $mux $procmux$1081.
+    dead port 1/2 on $mux $procmux$1078.
+    dead port 2/2 on $mux $procmux$1078.
+    dead port 1/2 on $mux $procmux$1075.
+    dead port 2/2 on $mux $procmux$1075.
+    dead port 1/2 on $mux $procmux$1072.
+    dead port 2/2 on $mux $procmux$1072.
+    dead port 1/2 on $mux $procmux$1069.
+    dead port 2/2 on $mux $procmux$1069.
+    dead port 1/2 on $mux $procmux$1066.
+    dead port 2/2 on $mux $procmux$1066.
+    dead port 1/2 on $mux $procmux$1063.
+    dead port 2/2 on $mux $procmux$1063.
+    dead port 1/2 on $mux $procmux$1060.
+    dead port 2/2 on $mux $procmux$1060.
+    dead port 1/2 on $mux $procmux$1057.
+    dead port 2/2 on $mux $procmux$1057.
+    dead port 1/2 on $mux $procmux$1054.
+    dead port 2/2 on $mux $procmux$1054.
+    dead port 1/2 on $mux $procmux$1051.
+    dead port 2/2 on $mux $procmux$1051.
+    dead port 1/2 on $mux $procmux$1048.
+    dead port 2/2 on $mux $procmux$1048.
+    dead port 1/2 on $mux $procmux$1045.
+    dead port 2/2 on $mux $procmux$1045.
+    dead port 1/2 on $mux $procmux$1042.
+    dead port 2/2 on $mux $procmux$1042.
+    dead port 1/2 on $mux $procmux$1039.
+    dead port 2/2 on $mux $procmux$1039.
+    dead port 1/2 on $mux $procmux$1036.
+    dead port 2/2 on $mux $procmux$1036.
+    dead port 1/2 on $mux $procmux$1033.
+    dead port 2/2 on $mux $procmux$1033.
+    dead port 1/2 on $mux $procmux$1030.
+    dead port 2/2 on $mux $procmux$1030.
+    dead port 1/2 on $mux $procmux$1027.
+    dead port 2/2 on $mux $procmux$1027.
+    dead port 1/2 on $mux $procmux$1024.
+    dead port 2/2 on $mux $procmux$1024.
+    dead port 1/2 on $mux $procmux$1021.
+    dead port 2/2 on $mux $procmux$1021.
+    dead port 1/2 on $mux $procmux$1018.
+    dead port 2/2 on $mux $procmux$1018.
+    dead port 1/2 on $mux $procmux$1015.
+    dead port 1/2 on $mux $procmux$1012.
+    dead port 1/2 on $mux $procmux$1009.
+    dead port 1/2 on $mux $procmux$1006.
+    dead port 1/2 on $mux $procmux$1000.
+    dead port 2/2 on $mux $procmux$1000.
+    dead port 1/2 on $mux $procmux$997.
+    dead port 2/2 on $mux $procmux$997.
+    dead port 1/2 on $mux $procmux$994.
+    dead port 2/2 on $mux $procmux$994.
+    dead port 1/2 on $mux $procmux$991.
+    dead port 2/2 on $mux $procmux$991.
+    dead port 1/2 on $mux $procmux$988.
+    dead port 2/2 on $mux $procmux$988.
+    dead port 1/2 on $mux $procmux$985.
+    dead port 2/2 on $mux $procmux$985.
+    dead port 1/2 on $mux $procmux$982.
+    dead port 2/2 on $mux $procmux$982.
+    dead port 1/2 on $mux $procmux$979.
+    dead port 2/2 on $mux $procmux$979.
+    dead port 1/2 on $mux $procmux$976.
+    dead port 2/2 on $mux $procmux$976.
+    dead port 1/2 on $mux $procmux$973.
+    dead port 2/2 on $mux $procmux$973.
+    dead port 1/2 on $mux $procmux$970.
+    dead port 2/2 on $mux $procmux$970.
+    dead port 1/2 on $mux $procmux$967.
+    dead port 2/2 on $mux $procmux$967.
+    dead port 1/2 on $mux $procmux$964.
+    dead port 2/2 on $mux $procmux$964.
+    dead port 1/2 on $mux $procmux$961.
+    dead port 2/2 on $mux $procmux$961.
+    dead port 1/2 on $mux $procmux$958.
+    dead port 2/2 on $mux $procmux$958.
+    dead port 1/2 on $mux $procmux$955.
+    dead port 2/2 on $mux $procmux$955.
+    dead port 1/2 on $mux $procmux$952.
+    dead port 2/2 on $mux $procmux$952.
+    dead port 1/2 on $mux $procmux$949.
+    dead port 2/2 on $mux $procmux$949.
+    dead port 1/2 on $mux $procmux$946.
+    dead port 2/2 on $mux $procmux$946.
+    dead port 1/2 on $mux $procmux$943.
+    dead port 2/2 on $mux $procmux$943.
+    dead port 1/2 on $mux $procmux$940.
+    dead port 2/2 on $mux $procmux$940.
+    dead port 1/2 on $mux $procmux$937.
+    dead port 2/2 on $mux $procmux$937.
+    dead port 1/2 on $mux $procmux$934.
+    dead port 2/2 on $mux $procmux$934.
+    dead port 1/2 on $mux $procmux$931.
+    dead port 2/2 on $mux $procmux$931.
+    dead port 1/2 on $mux $procmux$928.
+    dead port 2/2 on $mux $procmux$928.
+    dead port 1/2 on $mux $procmux$925.
+    dead port 2/2 on $mux $procmux$925.
+    dead port 1/2 on $mux $procmux$922.
+    dead port 2/2 on $mux $procmux$922.
+    dead port 1/2 on $mux $procmux$919.
+    dead port 2/2 on $mux $procmux$919.
+    dead port 1/2 on $mux $procmux$916.
+    dead port 2/2 on $mux $procmux$916.
+    dead port 1/2 on $mux $procmux$913.
+    dead port 2/2 on $mux $procmux$913.
+    dead port 1/2 on $mux $procmux$910.
+    dead port 2/2 on $mux $procmux$910.
+    dead port 1/2 on $mux $procmux$907.
+    dead port 2/2 on $mux $procmux$907.
+    dead port 1/2 on $mux $procmux$904.
+    dead port 2/2 on $mux $procmux$904.
+    dead port 1/2 on $mux $procmux$901.
+    dead port 2/2 on $mux $procmux$901.
+    dead port 1/2 on $mux $procmux$898.
+    dead port 2/2 on $mux $procmux$898.
+    dead port 1/2 on $mux $procmux$895.
+    dead port 2/2 on $mux $procmux$895.
+    dead port 1/2 on $mux $procmux$892.
+    dead port 2/2 on $mux $procmux$892.
+    dead port 1/2 on $mux $procmux$889.
+    dead port 2/2 on $mux $procmux$889.
+    dead port 1/2 on $mux $procmux$886.
+    dead port 2/2 on $mux $procmux$886.
+    dead port 1/2 on $mux $procmux$883.
+    dead port 2/2 on $mux $procmux$883.
+    dead port 1/2 on $mux $procmux$880.
+    dead port 2/2 on $mux $procmux$880.
+    dead port 1/2 on $mux $procmux$877.
+    dead port 2/2 on $mux $procmux$877.
+    dead port 1/2 on $mux $procmux$874.
+    dead port 2/2 on $mux $procmux$874.
+    dead port 1/2 on $mux $procmux$871.
+    dead port 2/2 on $mux $procmux$871.
+    dead port 1/2 on $mux $procmux$868.
+    dead port 2/2 on $mux $procmux$868.
+    dead port 1/2 on $mux $procmux$865.
+    dead port 2/2 on $mux $procmux$865.
+    dead port 1/2 on $mux $procmux$862.
+    dead port 2/2 on $mux $procmux$862.
+    dead port 1/2 on $mux $procmux$859.
+    dead port 2/2 on $mux $procmux$859.
+    dead port 1/2 on $mux $procmux$856.
+    dead port 2/2 on $mux $procmux$856.
+    dead port 1/2 on $mux $procmux$853.
+    dead port 2/2 on $mux $procmux$853.
+    dead port 1/2 on $mux $procmux$850.
+    dead port 2/2 on $mux $procmux$850.
+    dead port 1/2 on $mux $procmux$847.
+    dead port 2/2 on $mux $procmux$847.
+    dead port 1/2 on $mux $procmux$844.
+    dead port 2/2 on $mux $procmux$844.
+    dead port 1/2 on $mux $procmux$841.
+    dead port 2/2 on $mux $procmux$841.
+    dead port 1/2 on $mux $procmux$838.
+    dead port 2/2 on $mux $procmux$838.
+    dead port 1/2 on $mux $procmux$835.
+    dead port 2/2 on $mux $procmux$835.
+    dead port 1/2 on $mux $procmux$832.
+    dead port 2/2 on $mux $procmux$832.
+    dead port 1/2 on $mux $procmux$829.
+    dead port 2/2 on $mux $procmux$829.
+    dead port 1/2 on $mux $procmux$826.
+    dead port 2/2 on $mux $procmux$826.
+    dead port 1/2 on $mux $procmux$823.
+    dead port 2/2 on $mux $procmux$823.
+    dead port 1/2 on $mux $procmux$820.
+    dead port 2/2 on $mux $procmux$820.
+    dead port 1/2 on $mux $procmux$817.
+    dead port 2/2 on $mux $procmux$817.
+    dead port 1/2 on $mux $procmux$814.
+    dead port 2/2 on $mux $procmux$814.
+    dead port 1/2 on $mux $procmux$811.
+    dead port 2/2 on $mux $procmux$811.
+    dead port 1/2 on $mux $procmux$808.
+    dead port 2/2 on $mux $procmux$808.
+    dead port 1/2 on $mux $procmux$805.
+    dead port 2/2 on $mux $procmux$805.
+    dead port 1/2 on $mux $procmux$802.
+    dead port 1/2 on $mux $procmux$799.
+    dead port 1/2 on $mux $procmux$796.
+    dead port 1/2 on $mux $procmux$793.
+    dead port 1/2 on $mux $procmux$790.
+    dead port 1/2 on $mux $procmux$679.
+    dead port 1/2 on $mux $procmux$676.
+    dead port 1/2 on $mux $procmux$673.
+    dead port 1/2 on $mux $procmux$670.
+    dead port 1/2 on $mux $procmux$667.
+    dead port 1/2 on $mux $procmux$664.
+    dead port 1/2 on $mux $procmux$658.
+    dead port 1/2 on $mux $procmux$655.
+    dead port 1/2 on $mux $procmux$652.
+    dead port 1/2 on $mux $procmux$649.
+    dead port 1/2 on $mux $procmux$646.
+    dead port 1/2 on $mux $procmux$643.
+    dead port 1/2 on $mux $procmux$640.
+    dead port 1/2 on $mux $procmux$613.
+    dead port 1/2 on $mux $procmux$610.
+    dead port 1/2 on $mux $procmux$607.
+    dead port 1/2 on $mux $procmux$604.
+    dead port 1/2 on $mux $procmux$601.
+    dead port 1/2 on $mux $procmux$598.
+    dead port 1/2 on $mux $procmux$571.
+    dead port 1/2 on $mux $procmux$568.
+    dead port 1/2 on $mux $procmux$565.
+    dead port 1/2 on $mux $procmux$562.
+    dead port 1/2 on $mux $procmux$559.
+    dead port 1/2 on $mux $procmux$556.
+    dead port 1/2 on $mux $procmux$550.
+    dead port 1/2 on $mux $procmux$547.
+    dead port 1/2 on $mux $procmux$544.
+    dead port 1/2 on $mux $procmux$541.
+    dead port 1/2 on $mux $procmux$538.
+    dead port 1/2 on $mux $procmux$535.
+    dead port 2/2 on $mux $procmux$532.
+    dead port 1/2 on $mux $procmux$526.
+    dead port 1/2 on $mux $procmux$523.
+    dead port 1/2 on $mux $procmux$520.
+    dead port 1/2 on $mux $procmux$517.
+    dead port 1/2 on $mux $procmux$514.
+    dead port 1/2 on $mux $procmux$511.
+    dead port 1/2 on $mux $procmux$505.
+    dead port 1/2 on $mux $procmux$502.
+    dead port 1/2 on $mux $procmux$499.
+    dead port 1/2 on $mux $procmux$496.
+    dead port 1/2 on $mux $procmux$493.
+    dead port 1/2 on $mux $procmux$490.
+    dead port 1/2 on $mux $procmux$487.
+    dead port 1/2 on $mux $procmux$1540.
+    dead port 2/2 on $mux $procmux$1540.
+    dead port 1/2 on $mux $procmux$1510.
+    dead port 2/2 on $mux $procmux$1510.
+    dead port 1/2 on $mux $procmux$1537.
+    dead port 2/2 on $mux $procmux$1537.
+    dead port 1/2 on $mux $procmux$1534.
+    dead port 2/2 on $mux $procmux$1534.
+    dead port 1/2 on $mux $procmux$1531.
+    dead port 2/2 on $mux $procmux$1531.
+    dead port 1/2 on $mux $procmux$1528.
+    dead port 2/2 on $mux $procmux$1528.
+    dead port 1/2 on $mux $procmux$1525.
+    dead port 2/2 on $mux $procmux$1525.
+    dead port 1/2 on $mux $procmux$1522.
+    dead port 2/2 on $mux $procmux$1522.
+    dead port 1/2 on $mux $procmux$1519.
+    dead port 2/2 on $mux $procmux$1519.
+    dead port 1/2 on $mux $procmux$1516.
+    dead port 2/2 on $mux $procmux$1516.
+    dead port 1/2 on $mux $procmux$1513.
+    dead port 2/2 on $mux $procmux$1513.
+Running muxtree optimizer on module \fp_network..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_layer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_argmax..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$1639.
+    dead port 1/2 on $mux $procmux$1636.
+    dead port 1/2 on $mux $procmux$1630.
+    dead port 2/2 on $mux $procmux$1630.
+    dead port 1/2 on $mux $procmux$1627.
+    dead port 2/2 on $mux $procmux$1627.
+    dead port 1/2 on $mux $procmux$1624.
+    dead port 2/2 on $mux $procmux$1624.
+    dead port 1/2 on $mux $procmux$1621.
+    dead port 2/2 on $mux $procmux$1621.
+    dead port 1/2 on $mux $procmux$1618.
+    dead port 2/2 on $mux $procmux$1618.
+    dead port 1/2 on $mux $procmux$1615.
+    dead port 2/2 on $mux $procmux$1615.
+    dead port 1/2 on $mux $procmux$1612.
+    dead port 2/2 on $mux $procmux$1612.
+    dead port 1/2 on $mux $procmux$1600.
+    dead port 1/2 on $mux $procmux$1597.
+    dead port 1/2 on $mux $procmux$1591.
+    dead port 1/2 on $mux $procmux$1588.
+    dead port 1/2 on $mux $procmux$1585.
+    dead port 1/2 on $mux $procmux$1579.
+    dead port 1/2 on $mux $procmux$1660.
+    dead port 1/2 on $mux $procmux$1657.
+    dead port 1/2 on $mux $procmux$1666.
+    dead port 1/2 on $mux $procmux$1645.
+Running muxtree optimizer on module \fp_adder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port B of cell $procmux$2732: $add$rtl/fp_adder.v:462$172_Y [27:2] -> { 1'1 $add$rtl/fp_adder.v:462$172_Y [26:2] }
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$3753.
+    dead port 2/2 on $mux $procmux$3753.
+    dead port 1/2 on $mux $procmux$3750.
+    dead port 2/2 on $mux $procmux$3750.
+    dead port 1/2 on $mux $procmux$3747.
+    dead port 2/2 on $mux $procmux$3747.
+    dead port 1/2 on $mux $procmux$3744.
+    dead port 2/2 on $mux $procmux$3744.
+    dead port 1/2 on $mux $procmux$3741.
+    dead port 2/2 on $mux $procmux$3741.
+    dead port 1/2 on $mux $procmux$3738.
+    dead port 2/2 on $mux $procmux$3738.
+    dead port 1/2 on $mux $procmux$3735.
+    dead port 2/2 on $mux $procmux$3735.
+    dead port 1/2 on $mux $procmux$3732.
+    dead port 2/2 on $mux $procmux$3732.
+    dead port 1/2 on $mux $procmux$3729.
+    dead port 2/2 on $mux $procmux$3729.
+    dead port 1/2 on $mux $procmux$3726.
+    dead port 2/2 on $mux $procmux$3726.
+    dead port 1/2 on $mux $procmux$3723.
+    dead port 2/2 on $mux $procmux$3723.
+    dead port 1/2 on $mux $procmux$3720.
+    dead port 2/2 on $mux $procmux$3720.
+    dead port 1/2 on $mux $procmux$3717.
+    dead port 2/2 on $mux $procmux$3717.
+    dead port 1/2 on $mux $procmux$3714.
+    dead port 2/2 on $mux $procmux$3714.
+    dead port 1/2 on $mux $procmux$3711.
+    dead port 2/2 on $mux $procmux$3711.
+    dead port 1/2 on $mux $procmux$3708.
+    dead port 2/2 on $mux $procmux$3708.
+    dead port 1/2 on $mux $procmux$3705.
+    dead port 2/2 on $mux $procmux$3705.
+    dead port 1/2 on $mux $procmux$3699.
+    dead port 2/2 on $mux $procmux$3699.
+    dead port 1/2 on $mux $procmux$3696.
+    dead port 2/2 on $mux $procmux$3696.
+    dead port 1/2 on $mux $procmux$3693.
+    dead port 2/2 on $mux $procmux$3693.
+    dead port 1/2 on $mux $procmux$3690.
+    dead port 2/2 on $mux $procmux$3690.
+    dead port 1/2 on $mux $procmux$3687.
+    dead port 2/2 on $mux $procmux$3687.
+    dead port 1/2 on $mux $procmux$3684.
+    dead port 2/2 on $mux $procmux$3684.
+    dead port 1/2 on $mux $procmux$3681.
+    dead port 2/2 on $mux $procmux$3681.
+    dead port 1/2 on $mux $procmux$3678.
+    dead port 2/2 on $mux $procmux$3678.
+    dead port 1/2 on $mux $procmux$3675.
+    dead port 2/2 on $mux $procmux$3675.
+    dead port 1/2 on $mux $procmux$3672.
+    dead port 2/2 on $mux $procmux$3672.
+    dead port 1/2 on $mux $procmux$3669.
+    dead port 2/2 on $mux $procmux$3669.
+    dead port 1/2 on $mux $procmux$3666.
+    dead port 2/2 on $mux $procmux$3666.
+    dead port 1/2 on $mux $procmux$3663.
+    dead port 2/2 on $mux $procmux$3663.
+    dead port 1/2 on $mux $procmux$3660.
+    dead port 2/2 on $mux $procmux$3660.
+    dead port 1/2 on $mux $procmux$3657.
+    dead port 2/2 on $mux $procmux$3657.
+    dead port 1/2 on $mux $procmux$3654.
+    dead port 2/2 on $mux $procmux$3654.
+    dead port 1/2 on $mux $procmux$3651.
+    dead port 2/2 on $mux $procmux$3651.
+    dead port 1/2 on $mux $procmux$3648.
+    dead port 2/2 on $mux $procmux$3648.
+    dead port 1/2 on $mux $procmux$3645.
+    dead port 2/2 on $mux $procmux$3645.
+    dead port 1/2 on $mux $procmux$3642.
+    dead port 2/2 on $mux $procmux$3642.
+    dead port 1/2 on $mux $procmux$3639.
+    dead port 2/2 on $mux $procmux$3639.
+    dead port 1/2 on $mux $procmux$3636.
+    dead port 2/2 on $mux $procmux$3636.
+    dead port 1/2 on $mux $procmux$3633.
+    dead port 2/2 on $mux $procmux$3633.
+    dead port 1/2 on $mux $procmux$3630.
+    dead port 2/2 on $mux $procmux$3630.
+    dead port 1/2 on $mux $procmux$3627.
+    dead port 2/2 on $mux $procmux$3627.
+    dead port 1/2 on $mux $procmux$3624.
+    dead port 2/2 on $mux $procmux$3624.
+    dead port 1/2 on $mux $procmux$3621.
+    dead port 2/2 on $mux $procmux$3621.
+    dead port 1/2 on $mux $procmux$3618.
+    dead port 2/2 on $mux $procmux$3618.
+    dead port 1/2 on $mux $procmux$3615.
+    dead port 2/2 on $mux $procmux$3615.
+    dead port 1/2 on $mux $procmux$3612.
+    dead port 2/2 on $mux $procmux$3612.
+    dead port 1/2 on $mux $procmux$3609.
+    dead port 2/2 on $mux $procmux$3609.
+    dead port 1/2 on $mux $procmux$3606.
+    dead port 2/2 on $mux $procmux$3606.
+    dead port 1/2 on $mux $procmux$3603.
+    dead port 2/2 on $mux $procmux$3603.
+    dead port 1/2 on $mux $procmux$3600.
+    dead port 2/2 on $mux $procmux$3600.
+    dead port 1/2 on $mux $procmux$3597.
+    dead port 2/2 on $mux $procmux$3597.
+    dead port 1/2 on $mux $procmux$3594.
+    dead port 2/2 on $mux $procmux$3594.
+    dead port 1/2 on $mux $procmux$3591.
+    dead port 2/2 on $mux $procmux$3591.
+    dead port 1/2 on $mux $procmux$3588.
+    dead port 2/2 on $mux $procmux$3588.
+    dead port 1/2 on $mux $procmux$3585.
+    dead port 2/2 on $mux $procmux$3585.
+    dead port 1/2 on $mux $procmux$3582.
+    dead port 2/2 on $mux $procmux$3582.
+    dead port 1/2 on $mux $procmux$3579.
+    dead port 2/2 on $mux $procmux$3579.
+    dead port 1/2 on $mux $procmux$3576.
+    dead port 2/2 on $mux $procmux$3576.
+    dead port 1/2 on $mux $procmux$3573.
+    dead port 2/2 on $mux $procmux$3573.
+    dead port 1/2 on $mux $procmux$3570.
+    dead port 2/2 on $mux $procmux$3570.
+    dead port 1/2 on $mux $procmux$3567.
+    dead port 2/2 on $mux $procmux$3567.
+    dead port 1/2 on $mux $procmux$3564.
+    dead port 2/2 on $mux $procmux$3564.
+    dead port 1/2 on $mux $procmux$3561.
+    dead port 2/2 on $mux $procmux$3561.
+    dead port 1/2 on $mux $procmux$3558.
+    dead port 2/2 on $mux $procmux$3558.
+    dead port 1/2 on $mux $procmux$3555.
+    dead port 2/2 on $mux $procmux$3555.
+    dead port 1/2 on $mux $procmux$3552.
+    dead port 2/2 on $mux $procmux$3552.
+    dead port 1/2 on $mux $procmux$3549.
+    dead port 2/2 on $mux $procmux$3549.
+    dead port 1/2 on $mux $procmux$3546.
+    dead port 2/2 on $mux $procmux$3546.
+    dead port 1/2 on $mux $procmux$3543.
+    dead port 2/2 on $mux $procmux$3543.
+    dead port 1/2 on $mux $procmux$3540.
+    dead port 2/2 on $mux $procmux$3540.
+    dead port 1/2 on $mux $procmux$3537.
+    dead port 2/2 on $mux $procmux$3537.
+    dead port 1/2 on $mux $procmux$3534.
+    dead port 2/2 on $mux $procmux$3534.
+    dead port 1/2 on $mux $procmux$3531.
+    dead port 1/2 on $mux $procmux$3489.
+    dead port 1/2 on $mux $procmux$3486.
+    dead port 1/2 on $mux $procmux$3480.
+    dead port 1/2 on $mux $procmux$3477.
+    dead port 1/2 on $mux $procmux$3474.
+    dead port 1/2 on $mux $procmux$3468.
+    dead port 1/2 on $mux $procmux$3465.
+    dead port 1/2 on $mux $procmux$3462.
+    dead port 1/2 on $mux $procmux$3456.
+    dead port 1/2 on $mux $procmux$3453.
+    dead port 1/2 on $mux $procmux$3450.
+    dead port 1/2 on $mux $procmux$3444.
+    dead port 1/2 on $mux $procmux$3441.
+    dead port 1/2 on $mux $procmux$3438.
+    dead port 1/2 on $mux $procmux$3432.
+    dead port 1/2 on $mux $procmux$3429.
+    dead port 1/2 on $mux $procmux$3426.
+    dead port 1/2 on $mux $procmux$3420.
+    dead port 1/2 on $mux $procmux$3417.
+    dead port 1/2 on $mux $procmux$3414.
+    dead port 1/2 on $mux $procmux$3411.
+    dead port 1/2 on $mux $procmux$3405.
+    dead port 1/2 on $mux $procmux$3402.
+    dead port 1/2 on $mux $procmux$3399.
+    dead port 1/2 on $mux $procmux$3396.
+    dead port 1/2 on $mux $procmux$3390.
+    dead port 1/2 on $mux $procmux$3387.
+    dead port 1/2 on $mux $procmux$3384.
+    dead port 1/2 on $mux $procmux$3381.
+    dead port 1/2 on $mux $procmux$3375.
+    dead port 1/2 on $mux $procmux$3372.
+    dead port 1/2 on $mux $procmux$3369.
+    dead port 1/2 on $mux $procmux$3366.
+    dead port 1/2 on $mux $procmux$3360.
+    dead port 1/2 on $mux $procmux$3357.
+    dead port 1/2 on $mux $procmux$3354.
+    dead port 1/2 on $mux $procmux$3351.
+    dead port 1/2 on $mux $procmux$3345.
+    dead port 2/2 on $mux $procmux$3345.
+    dead port 1/2 on $mux $procmux$3342.
+    dead port 2/2 on $mux $procmux$3342.
+    dead port 1/2 on $mux $procmux$3339.
+    dead port 2/2 on $mux $procmux$3339.
+    dead port 1/2 on $mux $procmux$3336.
+    dead port 2/2 on $mux $procmux$3336.
+    dead port 1/2 on $mux $procmux$3333.
+    dead port 2/2 on $mux $procmux$3333.
+    dead port 1/2 on $mux $procmux$3330.
+    dead port 2/2 on $mux $procmux$3330.
+    dead port 1/2 on $mux $procmux$3327.
+    dead port 2/2 on $mux $procmux$3327.
+    dead port 1/2 on $mux $procmux$3324.
+    dead port 2/2 on $mux $procmux$3324.
+    dead port 1/2 on $mux $procmux$3321.
+    dead port 2/2 on $mux $procmux$3321.
+    dead port 1/2 on $mux $procmux$3309.
+    dead port 2/2 on $mux $procmux$3309.
+    dead port 1/2 on $mux $procmux$3306.
+    dead port 2/2 on $mux $procmux$3306.
+    dead port 1/2 on $mux $procmux$3303.
+    dead port 2/2 on $mux $procmux$3303.
+    dead port 1/2 on $mux $procmux$3300.
+    dead port 2/2 on $mux $procmux$3300.
+    dead port 1/2 on $mux $procmux$3297.
+    dead port 2/2 on $mux $procmux$3297.
+    dead port 1/2 on $mux $procmux$3294.
+    dead port 2/2 on $mux $procmux$3294.
+    dead port 1/2 on $mux $procmux$3291.
+    dead port 2/2 on $mux $procmux$3291.
+    dead port 1/2 on $mux $procmux$3286.
+    dead port 2/2 on $mux $procmux$3286.
+    dead port 1/2 on $mux $procmux$3283.
+    dead port 2/2 on $mux $procmux$3283.
+    dead port 1/2 on $mux $procmux$3280.
+    dead port 2/2 on $mux $procmux$3280.
+    dead port 1/2 on $mux $procmux$3277.
+    dead port 2/2 on $mux $procmux$3277.
+    dead port 1/2 on $mux $procmux$3274.
+    dead port 2/2 on $mux $procmux$3274.
+    dead port 1/2 on $mux $procmux$3271.
+    dead port 2/2 on $mux $procmux$3271.
+    dead port 1/2 on $mux $procmux$3268.
+    dead port 2/2 on $mux $procmux$3268.
+    dead port 1/2 on $mux $procmux$3265.
+    dead port 2/2 on $mux $procmux$3265.
+    dead port 1/2 on $mux $procmux$3262.
+    dead port 1/2 on $mux $procmux$3259.
+    dead port 1/2 on $mux $procmux$3256.
+    dead port 1/2 on $mux $procmux$3250.
+    dead port 1/2 on $mux $procmux$3247.
+    dead port 1/2 on $mux $procmux$3244.
+    dead port 1/2 on $mux $procmux$3241.
+    dead port 1/2 on $mux $procmux$3786.
+    dead port 2/2 on $mux $procmux$3786.
+    dead port 1/2 on $mux $procmux$3235.
+    dead port 1/2 on $mux $procmux$3232.
+    dead port 1/2 on $mux $procmux$3229.
+    dead port 1/2 on $mux $procmux$3226.
+    dead port 1/2 on $mux $procmux$3780.
+    dead port 2/2 on $mux $procmux$3780.
+    dead port 1/2 on $mux $procmux$3774.
+    dead port 2/2 on $mux $procmux$3774.
+    dead port 1/2 on $mux $procmux$2845.
+    dead port 2/2 on $mux $procmux$2845.
+    dead port 1/2 on $mux $procmux$2842.
+    dead port 2/2 on $mux $procmux$2842.
+    dead port 1/2 on $mux $procmux$2839.
+    dead port 2/2 on $mux $procmux$2839.
+    dead port 1/2 on $mux $procmux$2836.
+    dead port 2/2 on $mux $procmux$2836.
+    dead port 1/2 on $mux $procmux$2833.
+    dead port 2/2 on $mux $procmux$2833.
+    dead port 1/2 on $mux $procmux$2830.
+    dead port 2/2 on $mux $procmux$2830.
+    dead port 1/2 on $mux $procmux$2827.
+    dead port 2/2 on $mux $procmux$2827.
+    dead port 1/2 on $mux $procmux$2824.
+    dead port 2/2 on $mux $procmux$2824.
+    dead port 1/2 on $mux $procmux$2821.
+    dead port 2/2 on $mux $procmux$2821.
+    dead port 1/2 on $mux $procmux$2818.
+    dead port 2/2 on $mux $procmux$2818.
+    dead port 1/2 on $mux $procmux$2815.
+    dead port 2/2 on $mux $procmux$2815.
+    dead port 1/2 on $mux $procmux$2812.
+    dead port 2/2 on $mux $procmux$2812.
+    dead port 1/2 on $mux $procmux$2809.
+    dead port 2/2 on $mux $procmux$2809.
+    dead port 1/2 on $mux $procmux$2806.
+    dead port 2/2 on $mux $procmux$2806.
+    dead port 1/2 on $mux $procmux$2803.
+    dead port 2/2 on $mux $procmux$2803.
+    dead port 1/2 on $mux $procmux$2800.
+    dead port 2/2 on $mux $procmux$2800.
+    dead port 1/2 on $mux $procmux$2797.
+    dead port 2/2 on $mux $procmux$2797.
+    dead port 1/2 on $mux $procmux$2794.
+    dead port 2/2 on $mux $procmux$2794.
+    dead port 1/2 on $mux $procmux$2791.
+    dead port 1/2 on $mux $procmux$2788.
+    dead port 1/2 on $mux $procmux$2764.
+    dead port 1/2 on $mux $procmux$2761.
+    dead port 2/2 on $mux $procmux$2758.
+    dead port 1/2 on $mux $procmux$2752.
+    dead port 1/2 on $mux $procmux$2749.
+    dead port 2/2 on $mux $procmux$2746.
+    dead port 1/2 on $mux $procmux$2740.
+    dead port 1/2 on $mux $procmux$2737.
+    dead port 2/2 on $mux $procmux$2734.
+    dead port 1/2 on $mux $procmux$2728.
+    dead port 2/2 on $mux $procmux$2728.
+    dead port 1/2 on $mux $procmux$2725.
+    dead port 2/2 on $mux $procmux$2725.
+    dead port 1/2 on $mux $procmux$2722.
+    dead port 2/2 on $mux $procmux$2722.
+    dead port 1/2 on $mux $procmux$2719.
+    dead port 2/2 on $mux $procmux$2719.
+    dead port 1/2 on $mux $procmux$2716.
+    dead port 2/2 on $mux $procmux$2716.
+    dead port 1/2 on $mux $procmux$2713.
+    dead port 2/2 on $mux $procmux$2713.
+    dead port 1/2 on $mux $procmux$2710.
+    dead port 2/2 on $mux $procmux$2710.
+    dead port 1/2 on $mux $procmux$2707.
+    dead port 2/2 on $mux $procmux$2707.
+    dead port 1/2 on $mux $procmux$2704.
+    dead port 2/2 on $mux $procmux$2704.
+    dead port 1/2 on $mux $procmux$2701.
+    dead port 2/2 on $mux $procmux$2701.
+    dead port 1/2 on $mux $procmux$2698.
+    dead port 2/2 on $mux $procmux$2698.
+    dead port 1/2 on $mux $procmux$2695.
+    dead port 2/2 on $mux $procmux$2695.
+    dead port 1/2 on $mux $procmux$2692.
+    dead port 2/2 on $mux $procmux$2692.
+    dead port 1/2 on $mux $procmux$2689.
+    dead port 2/2 on $mux $procmux$2689.
+    dead port 1/2 on $mux $procmux$2686.
+    dead port 2/2 on $mux $procmux$2686.
+    dead port 1/2 on $mux $procmux$2683.
+    dead port 2/2 on $mux $procmux$2683.
+    dead port 1/2 on $mux $procmux$2680.
+    dead port 2/2 on $mux $procmux$2680.
+    dead port 1/2 on $mux $procmux$2677.
+    dead port 2/2 on $mux $procmux$2677.
+    dead port 1/2 on $mux $procmux$2674.
+    dead port 2/2 on $mux $procmux$2674.
+    dead port 1/2 on $mux $procmux$2671.
+    dead port 2/2 on $mux $procmux$2671.
+    dead port 1/2 on $mux $procmux$2668.
+    dead port 1/2 on $mux $procmux$2665.
+    dead port 1/2 on $mux $procmux$2662.
+    dead port 1/2 on $mux $procmux$2656.
+    dead port 1/2 on $mux $procmux$2653.
+    dead port 1/2 on $mux $procmux$2650.
+    dead port 1/2 on $mux $procmux$2644.
+    dead port 1/2 on $mux $procmux$2641.
+    dead port 1/2 on $mux $procmux$2638.
+    dead port 1/2 on $mux $procmux$2632.
+    dead port 1/2 on $mux $procmux$2629.
+    dead port 1/2 on $mux $procmux$2626.
+    dead port 1/2 on $mux $procmux$2623.
+    dead port 1/2 on $mux $procmux$2602.
+    dead port 1/2 on $mux $procmux$2599.
+    dead port 1/2 on $mux $procmux$2596.
+    dead port 1/2 on $mux $procmux$2593.
+    dead port 1/2 on $mux $procmux$2572.
+    dead port 1/2 on $mux $procmux$2569.
+    dead port 1/2 on $mux $procmux$2566.
+    dead port 1/2 on $mux $procmux$2563.
+    dead port 1/2 on $mux $procmux$2542.
+    dead port 1/2 on $mux $procmux$2539.
+    dead port 1/2 on $mux $procmux$2536.
+    dead port 1/2 on $mux $procmux$2533.
+    dead port 1/2 on $mux $procmux$2512.
+    dead port 1/2 on $mux $procmux$2509.
+    dead port 1/2 on $mux $procmux$2506.
+    dead port 1/2 on $mux $procmux$2503.
+    dead port 1/2 on $mux $procmux$2482.
+    dead port 1/2 on $mux $procmux$2479.
+    dead port 1/2 on $mux $procmux$2476.
+    dead port 1/2 on $mux $procmux$2473.
+    dead port 1/2 on $mux $procmux$2452.
+    dead port 1/2 on $mux $procmux$2449.
+    dead port 1/2 on $mux $procmux$2446.
+    dead port 1/2 on $mux $procmux$2443.
+    dead port 1/2 on $mux $procmux$2422.
+    dead port 1/2 on $mux $procmux$2419.
+    dead port 1/2 on $mux $procmux$2416.
+    dead port 1/2 on $mux $procmux$2413.
+    dead port 1/2 on $mux $procmux$2392.
+    dead port 1/2 on $mux $procmux$2389.
+    dead port 1/2 on $mux $procmux$2386.
+    dead port 1/2 on $mux $procmux$2383.
+    dead port 1/2 on $mux $procmux$2362.
+    dead port 1/2 on $mux $procmux$2359.
+    dead port 1/2 on $mux $procmux$2356.
+    dead port 1/2 on $mux $procmux$2353.
+    dead port 1/2 on $mux $procmux$2332.
+    dead port 1/2 on $mux $procmux$2329.
+    dead port 1/2 on $mux $procmux$2326.
+    dead port 1/2 on $mux $procmux$2323.
+    dead port 1/2 on $mux $procmux$2302.
+    dead port 1/2 on $mux $procmux$2299.
+    dead port 1/2 on $mux $procmux$2296.
+    dead port 1/2 on $mux $procmux$2293.
+    dead port 1/2 on $mux $procmux$2272.
+    dead port 1/2 on $mux $procmux$2269.
+    dead port 1/2 on $mux $procmux$2266.
+    dead port 1/2 on $mux $procmux$2263.
+    dead port 1/2 on $mux $procmux$2242.
+    dead port 1/2 on $mux $procmux$2239.
+    dead port 1/2 on $mux $procmux$2236.
+    dead port 1/2 on $mux $procmux$2233.
+    dead port 1/2 on $mux $procmux$2212.
+    dead port 1/2 on $mux $procmux$2209.
+    dead port 1/2 on $mux $procmux$2206.
+    dead port 1/2 on $mux $procmux$2203.
+    dead port 1/2 on $mux $procmux$2182.
+    dead port 1/2 on $mux $procmux$2179.
+    dead port 1/2 on $mux $procmux$2176.
+    dead port 1/2 on $mux $procmux$2173.
+    dead port 1/2 on $mux $procmux$2152.
+    dead port 1/2 on $mux $procmux$2149.
+    dead port 1/2 on $mux $procmux$2146.
+    dead port 1/2 on $mux $procmux$2143.
+    dead port 1/2 on $mux $procmux$2122.
+    dead port 1/2 on $mux $procmux$2119.
+    dead port 1/2 on $mux $procmux$2116.
+    dead port 1/2 on $mux $procmux$2113.
+    dead port 1/2 on $mux $procmux$2092.
+    dead port 1/2 on $mux $procmux$2089.
+    dead port 1/2 on $mux $procmux$2086.
+    dead port 1/2 on $mux $procmux$2083.
+    dead port 1/2 on $mux $procmux$2062.
+    dead port 1/2 on $mux $procmux$2059.
+    dead port 1/2 on $mux $procmux$2056.
+    dead port 1/2 on $mux $procmux$2053.
+    dead port 1/2 on $mux $procmux$2032.
+    dead port 1/2 on $mux $procmux$2029.
+    dead port 1/2 on $mux $procmux$2026.
+    dead port 1/2 on $mux $procmux$2023.
+    dead port 1/2 on $mux $procmux$2002.
+    dead port 1/2 on $mux $procmux$1999.
+    dead port 1/2 on $mux $procmux$1996.
+    dead port 1/2 on $mux $procmux$1993.
+    dead port 1/2 on $mux $procmux$1972.
+    dead port 1/2 on $mux $procmux$1969.
+    dead port 1/2 on $mux $procmux$1966.
+    dead port 1/2 on $mux $procmux$1963.
+    dead port 1/2 on $mux $procmux$1942.
+    dead port 1/2 on $mux $procmux$1939.
+    dead port 1/2 on $mux $procmux$1936.
+    dead port 1/2 on $mux $procmux$1933.
+    dead port 1/2 on $mux $procmux$1912.
+    dead port 1/2 on $mux $procmux$1909.
+    dead port 1/2 on $mux $procmux$1906.
+    dead port 1/2 on $mux $procmux$1903.
+    dead port 1/2 on $mux $procmux$1882.
+    dead port 1/2 on $mux $procmux$1879.
+    dead port 1/2 on $mux $procmux$1876.
+    dead port 1/2 on $mux $procmux$1873.
+    dead port 1/2 on $mux $procmux$1837.
+    dead port 2/2 on $mux $procmux$1837.
+    dead port 1/2 on $mux $procmux$1834.
+    dead port 2/2 on $mux $procmux$1834.
+    dead port 1/2 on $mux $procmux$1831.
+    dead port 2/2 on $mux $procmux$1831.
+    dead port 1/2 on $mux $procmux$1828.
+    dead port 2/2 on $mux $procmux$1828.
+    dead port 1/2 on $mux $procmux$1825.
+    dead port 2/2 on $mux $procmux$1825.
+    dead port 1/2 on $mux $procmux$1807.
+    dead port 2/2 on $mux $procmux$1807.
+    dead port 1/2 on $mux $procmux$1804.
+    dead port 2/2 on $mux $procmux$1804.
+    dead port 1/2 on $mux $procmux$1801.
+    dead port 2/2 on $mux $procmux$1801.
+    dead port 1/2 on $mux $procmux$1798.
+    dead port 2/2 on $mux $procmux$1798.
+    dead port 1/2 on $mux $procmux$1795.
+    dead port 2/2 on $mux $procmux$1795.
+    dead port 1/2 on $mux $procmux$1792.
+    dead port 2/2 on $mux $procmux$1792.
+    dead port 1/2 on $mux $procmux$1789.
+    dead port 2/2 on $mux $procmux$1789.
+    dead port 1/2 on $mux $procmux$1786.
+    dead port 2/2 on $mux $procmux$1786.
+    dead port 1/2 on $mux $procmux$1783.
+    dead port 2/2 on $mux $procmux$1783.
+    dead port 1/2 on $mux $procmux$1780.
+    dead port 2/2 on $mux $procmux$1780.
+    dead port 1/2 on $mux $procmux$1777.
+    dead port 2/2 on $mux $procmux$1777.
+    dead port 1/2 on $mux $procmux$1774.
+    dead port 2/2 on $mux $procmux$1774.
+    dead port 1/2 on $mux $procmux$1771.
+    dead port 2/2 on $mux $procmux$1771.
+    dead port 1/2 on $mux $procmux$1768.
+    dead port 2/2 on $mux $procmux$1768.
+    dead port 1/2 on $mux $procmux$1765.
+    dead port 2/2 on $mux $procmux$1765.
+    dead port 1/2 on $mux $procmux$1762.
+    dead port 1/2 on $mux $procmux$1759.
+    dead port 1/2 on $mux $procmux$1753.
+    dead port 1/2 on $mux $procmux$1750.
+    dead port 1/2 on $mux $procmux$1747.
+    dead port 1/2 on $mux $procmux$1741.
+    dead port 1/2 on $mux $procmux$1738.
+    dead port 1/2 on $mux $procmux$1735.
+    dead port 1/2 on $mux $procmux$3759.
+    dead port 2/2 on $mux $procmux$3759.
+    dead port 1/2 on $mux $procmux$3762.
+    dead port 2/2 on $mux $procmux$3762.
+    dead port 1/2 on $mux $procmux$1717.
+    dead port 1/2 on $mux $procmux$1714.
+    dead port 1/2 on $mux $procmux$1711.
+    dead port 1/2 on $mux $procmux$1705.
+    dead port 1/2 on $mux $procmux$1702.
+    dead port 1/2 on $mux $procmux$1699.
+    dead port 1/2 on $mux $procmux$1696.
+    dead port 1/2 on $mux $procmux$3756.
+    dead port 2/2 on $mux $procmux$3756.
+    dead port 1/2 on $mux $procmux$3765.
+    dead port 2/2 on $mux $procmux$3765.
+    dead port 1/2 on $mux $procmux$3768.
+    dead port 2/2 on $mux $procmux$3768.
+    dead port 1/2 on $mux $procmux$3771.
+    dead port 2/2 on $mux $procmux$3771.
+    dead port 1/2 on $mux $procmux$3777.
+    dead port 2/2 on $mux $procmux$3777.
+    dead port 1/2 on $mux $procmux$3783.
+    dead port 2/2 on $mux $procmux$3783.
+Removed 1068 multiplexer ports.
+<suppressed ~920 debug messages>
+
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp_relu.
+  Optimizing cells in module \fp_neuron.
+  Optimizing cells in module \fp_multiplier.
+  Optimizing cells in module \fp_network.
+  Optimizing cells in module \fp_layer.
+  Optimizing cells in module \fp_argmax.
+  Optimizing cells in module \fp_adder.
+Performed a total of 0 changes.
+
+11.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 6 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 16 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 110 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Finding identical cells in module `\fp_network'.
+Computing hashes of 45 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 37 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 510 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 0 cells.
+
+11.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$3789 ($dff) from module fp_relu (D = $procmux$454_Y [31], Q = \data_out [31], rval = 1'0).
+Adding SRST signal on $procdff$3789 ($dff) from module fp_relu (D = \data_in [30:0], Q = \data_out [30:0], rval = 31'0000000000000000000000000000000).
+Adding SRST signal on $procdff$3788 ($dff) from module fp_relu (D = \valid_in, Q = \valid_out, rval = 1'0).
+Adding SRST signal on $procdff$3790 ($dff) from module fp_neuron (D = \bias, Q = \bias_d1, rval = 0).
+Adding SRST signal on $procdff$3791 ($dff) from module fp_neuron (D = \bias_d1, Q = \bias_d2, rval = 0).
+Adding SRST signal on $procdff$3792 ($dff) from module fp_neuron (D = \bias_d2, Q = \bias_d3, rval = 0).
+Adding SRST signal on $procdff$3793 ($dff) from module fp_multiplier (D = \valid_reg, Q = \valid_out, rval = 1'0).
+Adding SRST signal on $procdff$3794 ($dff) from module fp_multiplier (D = \result_comb, Q = \product, rval = 0).
+Adding SRST signal on $procdff$3795 ($dff) from module fp_multiplier (D = \a, Q = \a_reg, rval = 0).
+Adding SRST signal on $procdff$3797 ($dff) from module fp_multiplier (D = \valid_in, Q = \valid_reg, rval = 1'0).
+Adding SRST signal on $procdff$3796 ($dff) from module fp_multiplier (D = \b, Q = \b_reg, rval = 0).
+Adding SRST signal on $procdff$3805 ($dff) from module fp_network (D = \ob0_d1, Q = \ob0_d2, rval = 0).
+Adding SRST signal on $procdff$3806 ($dff) from module fp_network (D = \ob0_d2, Q = \ob0_d3, rval = 0).
+Adding SRST signal on $procdff$3798 ($dff) from module fp_network (D = \ob2, Q = \ob2_d1, rval = 0).
+Adding SRST signal on $procdff$3799 ($dff) from module fp_network (D = \ob2_d1, Q = \ob2_d2, rval = 0).
+Adding SRST signal on $procdff$3800 ($dff) from module fp_network (D = \ob2_d2, Q = \ob2_d3, rval = 0).
+Adding SRST signal on $procdff$3801 ($dff) from module fp_network (D = \ob1, Q = \ob1_d1, rval = 0).
+Adding SRST signal on $procdff$3802 ($dff) from module fp_network (D = \ob1_d1, Q = \ob1_d2, rval = 0).
+Adding SRST signal on $procdff$3803 ($dff) from module fp_network (D = \ob1_d2, Q = \ob1_d3, rval = 0).
+Adding SRST signal on $procdff$3804 ($dff) from module fp_network (D = \ob0, Q = \ob0_d1, rval = 0).
+Adding SRST signal on $procdff$3808 ($dff) from module fp_argmax (D = \max_index, Q = \index, rval = 2'00).
+Adding SRST signal on $procdff$3807 ($dff) from module fp_argmax (D = \valid_in, Q = \valid_out, rval = 1'0).
+Adding SRST signal on $procdff$3813 ($dff) from module fp_adder (D = \valid_in, Q = \valid_reg, rval = 1'0).
+Adding SRST signal on $procdff$3812 ($dff) from module fp_adder (D = $procmux$1682_Y, Q = \b_reg, rval = 0).
+Adding EN signal on $auto$ff.cc:337:slice$3841 ($sdff) from module fp_adder (D = \b, Q = \b_reg).
+Adding SRST signal on $procdff$3811 ($dff) from module fp_adder (D = $procmux$1687_Y, Q = \a_reg, rval = 0).
+Adding EN signal on $auto$ff.cc:337:slice$3843 ($sdff) from module fp_adder (D = \a, Q = \a_reg).
+Adding SRST signal on $procdff$3810 ($dff) from module fp_adder (D = \valid_reg, Q = \valid_out_reg, rval = 1'0).
+Adding SRST signal on $procdff$3809 ($dff) from module fp_adder (D = $procmux$1674_Y, Q = \sum_reg, rval = 0).
+Adding EN signal on $auto$ff.cc:337:slice$3846 ($sdff) from module fp_adder (D = \result_comb, Q = \sum_reg).
+
+11.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+Removed 39 unused cells and 2300 unused wires.
+<suppressed ~74 debug messages>
+
+11.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+
+11.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+11.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp_relu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_neuron..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_multiplier..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_network..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_layer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_argmax..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_adder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$2782.
+    dead port 1/2 on $mux $procmux$2779.
+Removed 2 multiplexer ports.
+<suppressed ~506 debug messages>
+
+11.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp_relu.
+  Optimizing cells in module \fp_neuron.
+  Optimizing cells in module \fp_multiplier.
+  Optimizing cells in module \fp_network.
+  Optimizing cells in module \fp_layer.
+  Optimizing cells in module \fp_argmax.
+  Optimizing cells in module \fp_adder.
+Performed a total of 0 changes.
+
+11.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 6 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 12 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 104 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Finding identical cells in module `\fp_network'.
+Computing hashes of 35 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 34 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 495 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 0 cells.
+
+11.13. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:337:slice$3825 ($sdff) from module fp_multiplier (D = $8\rounded_mant[24:0] [21:0], Q = \product [21:0], rval = 22'0000000000000000000000).
+Adding SRST signal on $auto$ff.cc:337:slice$3825 ($sdff) from module fp_multiplier (D = $3\result_comb[31:0] [31], Q = \product [31], rval = 1'0).
+Adding SRST signal on $auto$ff.cc:337:slice$3838 ($sdff) from module fp_argmax (D = $1\max_index[1:0] [0], Q = \index [0], rval = 1'0).
+
+11.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+11.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+
+11.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+11.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp_relu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_neuron..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_multiplier..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_network..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_layer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_argmax..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_adder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~506 debug messages>
+
+11.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp_relu.
+  Optimizing cells in module \fp_neuron.
+  Optimizing cells in module \fp_multiplier.
+  Optimizing cells in module \fp_network.
+  Optimizing cells in module \fp_layer.
+  Optimizing cells in module \fp_argmax.
+  Optimizing cells in module \fp_adder.
+Performed a total of 0 changes.
+
+11.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 6 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 12 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 110 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 109 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\fp_network'.
+Computing hashes of 35 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 37 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 495 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 1 cells.
+
+11.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+11.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+
+11.23. Rerunning OPT passes. (Maybe there is more to do..)
+
+11.24. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp_relu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_neuron..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_multiplier..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_network..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_layer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_argmax..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_adder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~506 debug messages>
+
+11.25. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp_relu.
+  Optimizing cells in module \fp_neuron.
+  Optimizing cells in module \fp_multiplier.
+  Optimizing cells in module \fp_network.
+  Optimizing cells in module \fp_layer.
+  Optimizing cells in module \fp_argmax.
+  Optimizing cells in module \fp_adder.
+Performed a total of 0 changes.
+
+11.26. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 6 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 12 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 109 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Finding identical cells in module `\fp_network'.
+Computing hashes of 35 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 37 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 495 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 0 cells.
+
+11.27. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.28. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+
+11.29. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+
+11.30. Finished fast OPT passes. (There is nothing left to do.)
+
+12. Executing FSM pass (extract and optimize FSM).
+
+12.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+12.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+12.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+
+12.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+12.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+12.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+13. Executing OPT pass (performing simple optimizations).
+
+13.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+
+13.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 6 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 12 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 109 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Finding identical cells in module `\fp_network'.
+Computing hashes of 35 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 37 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 495 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 0 cells.
+
+13.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp_relu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_neuron..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_multiplier..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_network..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_layer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_argmax..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \fp_adder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~506 debug messages>
+
+13.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp_relu.
+  Optimizing cells in module \fp_neuron.
+  Optimizing cells in module \fp_multiplier.
+  Optimizing cells in module \fp_network.
+  Optimizing cells in module \fp_layer.
+  Optimizing cells in module \fp_argmax.
+  Optimizing cells in module \fp_adder.
+Performed a total of 0 changes.
+
+13.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 6 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 12 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 109 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Finding identical cells in module `\fp_network'.
+Computing hashes of 35 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 37 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 495 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 0 cells.
+
+13.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+13.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+
+13.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+
+13.9. Finished fast OPT passes. (There is nothing left to do.)
+
+14. Executing MEMORY pass.
+
+14.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+14.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+14.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+14.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+14.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+14.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+
+14.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+14.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+14.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+
+14.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+14.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+15. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+16. Executing TECHMAP pass (map to technology primitives).
+
+16.1. Executing Verilog-2005 frontend: /opt/homebrew/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/opt/homebrew/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+16.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $sdffe.
+Using extmapper simplemap for cells of type $sdff.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $logic_and.
+Running "alumacc" on wrapper $extern:wrap:$gt:Y_WIDTH=1:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$gt:Y_WIDTH=1:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$gt:Y_WIDTH=1:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$ge:Y_WIDTH=1:B_WIDTH=24:A_WIDTH=24:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$ge:Y_WIDTH=1:B_WIDTH=24:A_WIDTH=24:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$ge:Y_WIDTH=1:B_WIDTH=24:A_WIDTH=24:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$sub:Y_WIDTH=32:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$sub:Y_WIDTH=32:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$sub:Y_WIDTH=32:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$ge:Y_WIDTH=1:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$ge:Y_WIDTH=1:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$ge:Y_WIDTH=1:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using extmapper simplemap for cells of type $or.
+Using template $paramod$constmap:13ddf225ec82f85695251b229625be815f564c08$paramod$d137e9f8c3237dc45a2f1807aeb7665ead8d1066\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shr.
+Running "alumacc" on wrapper $extern:wrap:$lt:Y_WIDTH=1:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$lt:Y_WIDTH=1:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$lt:Y_WIDTH=1:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using extmapper simplemap for cells of type $eq.
+Running "alumacc" on wrapper $extern:wrap:$add:Y_WIDTH=28:B_WIDTH=28:A_WIDTH=28:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:Y_WIDTH=28:B_WIDTH=28:A_WIDTH=28:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:Y_WIDTH=28:B_WIDTH=28:A_WIDTH=28:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$add:Y_WIDTH=8:B_WIDTH=1:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:Y_WIDTH=8:B_WIDTH=1:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:Y_WIDTH=8:B_WIDTH=1:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$sub:Y_WIDTH=28:B_WIDTH=28:A_WIDTH=28:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$sub:Y_WIDTH=28:B_WIDTH=28:A_WIDTH=28:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$sub:Y_WIDTH=28:B_WIDTH=28:A_WIDTH=28:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$gt:Y_WIDTH=1:B_WIDTH=8:A_WIDTH=32:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$gt:Y_WIDTH=1:B_WIDTH=8:A_WIDTH=32:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$gt:Y_WIDTH=1:B_WIDTH=8:A_WIDTH=32:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $paramod$constmap:41677d33992a1bc4cd0beb58a0869260290a320f$paramod$aa7405bf140bd41bfb0f52f8d4fd2da4fcb6d0f9\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shl.
+Running "alumacc" on wrapper $extern:wrap:$sub:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$sub:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$sub:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using extmapper simplemap for cells of type $logic_or.
+Running "alumacc" on wrapper $extern:wrap:$add:Y_WIDTH=24:B_WIDTH=1:A_WIDTH=24:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:Y_WIDTH=24:B_WIDTH=1:A_WIDTH=24:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:Y_WIDTH=24:B_WIDTH=1:A_WIDTH=24:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$ge:Y_WIDTH=1:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$ge:Y_WIDTH=1:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$ge:Y_WIDTH=1:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$79aa992f2eb7f354d4aaf651790713cf239111fa\_90_alu for cells of type $alu.
+Using template $paramod$91f82ead1edc61e0a1452110f15ef747116b421b\_90_alu for cells of type $alu.
+Using template $paramod$47f54ff2f0cc9449305556c1cf611d590a7c17fb\_90_alu for cells of type $alu.
+Using template $paramod$d7c91f8d4ce389beb1bd34b271e05fae2549a2a8\_90_alu for cells of type $alu.
+Using template $paramod$c3cd1564c35d873179656addd6052d7ea8b6d991\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod$c2132c6f269906fe95d26e5536e09c5af769348d\_90_alu for cells of type $alu.
+Using template $paramod$2653f68ddb8eab7b1907b4a20767b72a824a7a36\_90_alu for cells of type $alu.
+Using template $paramod$e82d3fc1811c5751348a3964470632b35a435fc7\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011000 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011100 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011100 for cells of type $lcu.
+Using extmapper simplemap for cells of type $and.
+Running "alumacc" on wrapper $extern:wrap:$gt:Y_WIDTH=1:B_WIDTH=31:A_WIDTH=31:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$gt:Y_WIDTH=1:B_WIDTH=31:A_WIDTH=31:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$gt:Y_WIDTH=1:B_WIDTH=31:A_WIDTH=31:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$lt:Y_WIDTH=1:B_WIDTH=31:A_WIDTH=31:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$lt:Y_WIDTH=1:B_WIDTH=31:A_WIDTH=31:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$lt:Y_WIDTH=1:B_WIDTH=31:A_WIDTH=31:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $paramod$ebf89ea36a793f0f77858f212141d47c833068ad\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011111 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011111 for cells of type $lcu.
+Using extmapper simplemap for cells of type $reduce_bool.
+Running "alumacc" on wrapper $extern:wrap:$mul:Y_WIDTH=48:B_WIDTH=24:A_WIDTH=24:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$mul:Y_WIDTH=48:B_WIDTH=24:A_WIDTH=24:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$mul:Y_WIDTH=48:B_WIDTH=24:A_WIDTH=24:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$add:Y_WIDTH=32:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:Y_WIDTH=32:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:Y_WIDTH=32:B_WIDTH=8:A_WIDTH=8:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$sub:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=32:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$sub:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=32:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$sub:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=32:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$add:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:Y_WIDTH=32:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$le:Y_WIDTH=1:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$le:Y_WIDTH=1:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$le:Y_WIDTH=1:B_WIDTH=32:A_WIDTH=32:B_SIGNED=1:A_SIGNED=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$add:Y_WIDTH=25:B_WIDTH=1:A_WIDTH=25:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:Y_WIDTH=25:B_WIDTH=1:A_WIDTH=25:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:Y_WIDTH=25:B_WIDTH=1:A_WIDTH=25:B_SIGNED=0:A_SIGNED=0:394426c56d1a028ba8fdd5469b163e04011def47.
+Using extmapper maccmap for cells of type $macc_v2.
+  add { 1'1 \a_reg [22:0] } * { 1'1 \b_reg [22:0] } (24x24 bits, unsigned)
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using template $paramod$c6885379b74fbbf6906b35106e386e521d86cbb2\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000110000 for cells of type $fa.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000101111 for cells of type $fa.
+Using template $paramod$88aad6f8473fb7e4e5fbfb8335ddebad03429eaa\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000011001 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000011001 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000110000 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~10957 debug messages>
+
+17. Executing OPT pass (performing simple optimizations).
+
+17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+<suppressed ~1 debug messages>
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+<suppressed ~6262 debug messages>
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+<suppressed ~770 debug messages>
+Optimizing module fp_adder.
+<suppressed ~11107 debug messages>
+
+17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 66 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 105 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 6487 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 6288 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 6170 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 6097 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 6062 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 6044 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 6038 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 6032 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 6030 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 6028 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+<suppressed ~1377 debug messages>
+Finding identical cells in module `\fp_network'.
+Computing hashes of 314 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 1640 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 1473 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 1269 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 1173 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 1107 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 1080 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 1053 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 1041 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 1020 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 1011 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 987 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 972 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 936 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 915 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 873 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 852 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 819 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 807 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 792 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 789 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Computing hashes of 786 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+<suppressed ~2562 debug messages>
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 5664 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 5008 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 4442 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 4151 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 4053 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 3997 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 3949 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 3907 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 3876 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 3848 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 3812 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 3795 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 3789 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Computing hashes of 3787 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+<suppressed ~5631 debug messages>
+Removed a total of 3190 cells.
+
+17.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp_relu..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_neuron..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_multiplier..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_network..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_layer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_argmax..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_adder..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+17.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp_relu.
+  Optimizing cells in module \fp_neuron.
+  Optimizing cells in module \fp_multiplier.
+  Optimizing cells in module \fp_network.
+  Optimizing cells in module \fp_layer.
+  Optimizing cells in module \fp_argmax.
+  Optimizing cells in module \fp_adder.
+Performed a total of 0 changes.
+
+17.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 66 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 105 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 6028 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Finding identical cells in module `\fp_network'.
+Computing hashes of 314 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 786 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 3787 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 0 cells.
+
+17.6. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:337:slice$37431 ($_SDFF_PN0_) from module fp_relu.
+
+17.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+Removed 1527 unused cells and 7469 unused wires.
+<suppressed ~1531 debug messages>
+
+17.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+<suppressed ~3 debug messages>
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+<suppressed ~24 debug messages>
+
+17.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+17.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp_relu..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_neuron..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_multiplier..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_network..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_layer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_argmax..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_adder..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+17.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp_relu.
+  Optimizing cells in module \fp_neuron.
+  Optimizing cells in module \fp_multiplier.
+  Optimizing cells in module \fp_network.
+  Optimizing cells in module \fp_layer.
+  Optimizing cells in module \fp_argmax.
+  Optimizing cells in module \fp_adder.
+Performed a total of 0 changes.
+
+17.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 34 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 105 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 5413 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5405 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5394 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5382 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5370 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5358 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5346 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5334 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5322 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5310 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5298 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5291 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5283 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5277 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5274 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Computing hashes of 5273 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+<suppressed ~420 debug messages>
+Finding identical cells in module `\fp_network'.
+Computing hashes of 314 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 559 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 3106 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 140 cells.
+
+17.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+17.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+Removed 1 unused cells and 30 unused wires.
+<suppressed ~3 debug messages>
+
+17.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+
+17.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+17.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp_relu..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_neuron..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_multiplier..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_network..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_layer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_argmax..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_adder..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+17.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp_relu.
+  Optimizing cells in module \fp_neuron.
+  Optimizing cells in module \fp_multiplier.
+  Optimizing cells in module \fp_network.
+  Optimizing cells in module \fp_layer.
+  Optimizing cells in module \fp_argmax.
+  Optimizing cells in module \fp_adder.
+Performed a total of 0 changes.
+
+17.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 34 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 105 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 5273 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Finding identical cells in module `\fp_network'.
+Computing hashes of 314 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 559 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 3105 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 0 cells.
+
+17.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+17.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+
+17.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+
+17.23. Finished fast OPT passes. (There is nothing left to do.)
+
+18. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell DFF_X1 (noninv, pins=4, area=4.52) is a direct match for cell type $_DFF_P_.
+  cell DFFR_X1 (noninv, pins=5, area=5.32) is a direct match for cell type $_DFF_PN0_.
+  cell DFFS_X1 (noninv, pins=5, area=5.32) is a direct match for cell type $_DFF_PN1_.
+  cell DFFRS_X1 (noninv, pins=6, area=6.38) is a direct match for cell type $_DFFSR_PNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \DFF_X1 _DFF_P_ (.CK( C), .D( D), .Q( Q), .QN(~Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \DFFR_X1 _DFF_PN0_ (.CK( C), .D( D), .Q( Q), .QN(~Q), .RN( R));
+    \DFFS_X1 _DFF_PN1_ (.CK( C), .D( D), .Q( Q), .QN(~Q), .SN( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    unmapped dff cell: $_DFFE_NN_
+    unmapped dff cell: $_DFFE_NP_
+    unmapped dff cell: $_DFFE_PN_
+    unmapped dff cell: $_DFFE_PP_
+    unmapped dff cell: $_DFFSR_NNN_
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    \DFFRS_X1 _DFFSR_PNN_ (.CK( C), .D( D), .Q( Q), .QN(~Q), .RN( R), .SN( S));
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+18.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+<suppressed ~8 debug messages>
+Mapping DFF cells in module `\fp_relu':
+  mapped 32 $_DFF_P_ cells to \DFF_X1 cells.
+Mapping DFF cells in module `\fp_neuron':
+  mapped 96 $_DFF_P_ cells to \DFF_X1 cells.
+Mapping DFF cells in module `\fp_multiplier':
+  mapped 98 $_DFF_P_ cells to \DFF_X1 cells.
+Mapping DFF cells in module `\fp_network':
+  mapped 288 $_DFF_P_ cells to \DFF_X1 cells.
+Mapping DFF cells in module `\fp_layer':
+Mapping DFF cells in module `\fp_argmax':
+  mapped 3 $_DFF_P_ cells to \DFF_X1 cells.
+Mapping DFF cells in module `\fp_adder':
+  mapped 98 $_DFF_P_ cells to \DFF_X1 cells.
+
+19. Executing ABC pass (technology mapping using ABC).
+
+19.1. Extracting gate netlist of module `\fp_relu' to `<abc-temp-dir>/input.blif'..
+ABC: using cached merged SCL: /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl (1 files)
+
+19.1.1. Executed ABC.
+Extracted 34 gates and 69 wires to a netlist network with 34 inputs and 32 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_scl /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl 
+ABC: Warning: Detected 2 multi-output cells (for example, "FA_X1").
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+19.1.2. Re-integrating ABC results.
+ABC RESULTS:           AND2_X1 cells:        1
+ABC RESULTS:           AND3_X1 cells:       31
+ABC RESULTS:            INV_X1 cells:        1
+ABC RESULTS:        internal signals:        3
+ABC RESULTS:           input signals:       34
+ABC RESULTS:          output signals:       32
+Removing temp directory.
+
+19.2. Extracting gate netlist of module `\fp_neuron' to `<abc-temp-dir>/input.blif'..
+ABC: using cached merged SCL: /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl (1 files)
+
+19.2.1. Executed ABC.
+Extracted 96 gates and 194 wires to a netlist network with 97 inputs and 96 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_scl /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl 
+ABC: Warning: Detected 2 multi-output cells (for example, "FA_X1").
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+19.2.2. Re-integrating ABC results.
+ABC RESULTS:           AND2_X1 cells:       96
+ABC RESULTS:        internal signals:        1
+ABC RESULTS:           input signals:       97
+ABC RESULTS:          output signals:       96
+Removing temp directory.
+
+19.3. Extracting gate netlist of module `\fp_multiplier' to `<abc-temp-dir>/input.blif'..
+ABC: using cached merged SCL: /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl (1 files)
+Replacing 624 occurrences of constant undef bits with constant zero bits
+
+19.3.1. Executed ABC.
+Extracted 5273 gates and 5423 wires to a netlist network with 147 inputs and 98 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_scl /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl 
+ABC: Warning: Detected 2 multi-output cells (for example, "FA_X1").
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+19.3.2. Re-integrating ABC results.
+ABC RESULTS:           AND2_X1 cells:      328
+ABC RESULTS:           AND3_X1 cells:      114
+ABC RESULTS:           AND4_X1 cells:        8
+ABC RESULTS:         AOI211_X1 cells:       10
+ABC RESULTS:          AOI21_X1 cells:      347
+ABC RESULTS:         AOI221_X1 cells:        4
+ABC RESULTS:          AOI22_X1 cells:       27
+ABC RESULTS:            INV_X1 cells:      226
+ABC RESULTS:           MUX2_X1 cells:        9
+ABC RESULTS:          NAND2_X1 cells:      657
+ABC RESULTS:          NAND3_X1 cells:       99
+ABC RESULTS:          NAND4_X1 cells:       18
+ABC RESULTS:           NOR2_X1 cells:      502
+ABC RESULTS:           NOR3_X1 cells:       48
+ABC RESULTS:           NOR4_X1 cells:       33
+ABC RESULTS:         OAI211_X1 cells:       35
+ABC RESULTS:          OAI21_X1 cells:      246
+ABC RESULTS:         OAI221_X1 cells:        2
+ABC RESULTS:          OAI22_X1 cells:        1
+ABC RESULTS:          OAI33_X1 cells:        3
+ABC RESULTS:            OR2_X1 cells:      137
+ABC RESULTS:            OR3_X1 cells:      114
+ABC RESULTS:            OR4_X1 cells:        3
+ABC RESULTS:          XNOR2_X1 cells:      443
+ABC RESULTS:           XOR2_X1 cells:      439
+ABC RESULTS:        internal signals:     5178
+ABC RESULTS:           input signals:      147
+ABC RESULTS:          output signals:       98
+Removing temp directory.
+
+19.4. Extracting gate netlist of module `\fp_network' to `<abc-temp-dir>/input.blif'..
+ABC: using cached merged SCL: /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl (1 files)
+
+19.4.1. Executed ABC.
+Extracted 288 gates and 578 wires to a netlist network with 289 inputs and 288 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_scl /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl 
+ABC: Warning: Detected 2 multi-output cells (for example, "FA_X1").
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+19.4.2. Re-integrating ABC results.
+ABC RESULTS:           AND2_X1 cells:      288
+ABC RESULTS:        internal signals:        1
+ABC RESULTS:           input signals:      289
+ABC RESULTS:          output signals:      288
+Removing temp directory.
+
+19.5. Extracting gate netlist of module `\fp_layer' to `<abc-temp-dir>/input.blif'..
+ABC: using cached merged SCL: /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl (1 files)
+
+19.5.1. Executed ABC.
+Extracted 0 gates and 0 wires to a netlist network with 0 inputs and 0 outputs.
+Don't call ABC as there is nothing to map.
+Removing temp directory.
+
+19.6. Extracting gate netlist of module `\fp_argmax' to `<abc-temp-dir>/input.blif'..
+ABC: using cached merged SCL: /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl (1 files)
+Replacing 1 occurrences of constant undef bits with constant zero bits
+
+19.6.1. Executed ABC.
+Extracted 559 gates and 660 wires to a netlist network with 98 inputs and 3 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_scl /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl 
+ABC: Warning: Detected 2 multi-output cells (for example, "FA_X1").
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+19.6.2. Re-integrating ABC results.
+ABC RESULTS:           AND2_X1 cells:        7
+ABC RESULTS:           AND3_X1 cells:        3
+ABC RESULTS:           AND4_X1 cells:        3
+ABC RESULTS:         AOI211_X1 cells:       16
+ABC RESULTS:          AOI21_X1 cells:       31
+ABC RESULTS:         AOI221_X1 cells:        2
+ABC RESULTS:          AOI22_X1 cells:       22
+ABC RESULTS:            INV_X1 cells:       81
+ABC RESULTS:          NAND2_X1 cells:       44
+ABC RESULTS:          NAND3_X1 cells:        8
+ABC RESULTS:          NAND4_X1 cells:        4
+ABC RESULTS:           NOR2_X1 cells:       24
+ABC RESULTS:           NOR3_X1 cells:        8
+ABC RESULTS:           NOR4_X1 cells:        5
+ABC RESULTS:         OAI211_X1 cells:       34
+ABC RESULTS:          OAI21_X1 cells:       24
+ABC RESULTS:         OAI221_X1 cells:        5
+ABC RESULTS:         OAI222_X1 cells:        1
+ABC RESULTS:          OAI22_X1 cells:       26
+ABC RESULTS:          OAI33_X1 cells:        1
+ABC RESULTS:            OR2_X1 cells:        4
+ABC RESULTS:            OR3_X1 cells:        1
+ABC RESULTS:          XNOR2_X1 cells:       30
+ABC RESULTS:           XOR2_X1 cells:        8
+ABC RESULTS:        internal signals:      559
+ABC RESULTS:           input signals:       98
+ABC RESULTS:          output signals:        3
+Removing temp directory.
+
+19.7. Extracting gate netlist of module `\fp_adder' to `<abc-temp-dir>/input.blif'..
+ABC: using cached merged SCL: /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl (1 files)
+Replacing 522 occurrences of constant undef bits with constant zero bits
+
+19.7.1. Executed ABC.
+Extracted 3201 gates and 3406 wires to a netlist network with 202 inputs and 98 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_scl /var/folders/f3/q5j__bf16c51r3x6_ncyt0n40000gn/T/yosys-liberty-scl-cache/yosys_merged_d53d09b8.scl 
+ABC: Warning: Detected 2 multi-output cells (for example, "FA_X1").
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+19.7.2. Re-integrating ABC results.
+ABC RESULTS:           AND2_X1 cells:       62
+ABC RESULTS:           AND3_X1 cells:       19
+ABC RESULTS:           AND4_X1 cells:        4
+ABC RESULTS:         AOI211_X1 cells:       22
+ABC RESULTS:          AOI21_X1 cells:      243
+ABC RESULTS:         AOI221_X1 cells:       35
+ABC RESULTS:         AOI222_X1 cells:        3
+ABC RESULTS:          AOI22_X1 cells:       22
+ABC RESULTS:            INV_X1 cells:      161
+ABC RESULTS:           MUX2_X1 cells:      141
+ABC RESULTS:          NAND2_X1 cells:      159
+ABC RESULTS:          NAND3_X1 cells:       33
+ABC RESULTS:          NAND4_X1 cells:       20
+ABC RESULTS:           NOR2_X1 cells:      143
+ABC RESULTS:           NOR3_X1 cells:       28
+ABC RESULTS:           NOR4_X1 cells:       27
+ABC RESULTS:         OAI211_X1 cells:       66
+ABC RESULTS:          OAI21_X1 cells:      214
+ABC RESULTS:         OAI221_X1 cells:       10
+ABC RESULTS:         OAI222_X1 cells:        1
+ABC RESULTS:          OAI22_X1 cells:       19
+ABC RESULTS:          OAI33_X1 cells:       10
+ABC RESULTS:            OR2_X1 cells:       52
+ABC RESULTS:            OR3_X1 cells:        8
+ABC RESULTS:            OR4_X1 cells:        2
+ABC RESULTS:          XNOR2_X1 cells:       72
+ABC RESULTS:           XOR2_X1 cells:       26
+ABC RESULTS:        internal signals:     3106
+ABC RESULTS:           input signals:      202
+ABC RESULTS:          output signals:       98
+Removing temp directory.
+Removing global temp directory.
+Removed 0 unused cells and 3655 unused wires.
+
+20. Executing OPT pass (performing simple optimizations).
+
+20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+
+20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 65 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 201 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 3951 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Finding identical cells in module `\fp_network'.
+Computing hashes of 602 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 395 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 1700 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 0 cells.
+
+20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp_relu..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_neuron..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_multiplier..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_network..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_layer..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_argmax..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \fp_adder..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp_relu.
+  Optimizing cells in module \fp_neuron.
+  Optimizing cells in module \fp_multiplier.
+  Optimizing cells in module \fp_network.
+  Optimizing cells in module \fp_layer.
+  Optimizing cells in module \fp_argmax.
+  Optimizing cells in module \fp_adder.
+Performed a total of 0 changes.
+
+20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp_relu'.
+Computing hashes of 65 cells of `\fp_relu'.
+Finding duplicate cells in `\fp_relu'.
+Finding identical cells in module `\fp_neuron'.
+Computing hashes of 201 cells of `\fp_neuron'.
+Finding duplicate cells in `\fp_neuron'.
+Finding identical cells in module `\fp_multiplier'.
+Computing hashes of 3951 cells of `\fp_multiplier'.
+Finding duplicate cells in `\fp_multiplier'.
+Finding identical cells in module `\fp_network'.
+Computing hashes of 602 cells of `\fp_network'.
+Finding duplicate cells in `\fp_network'.
+Finding identical cells in module `\fp_layer'.
+Computing hashes of 4 cells of `\fp_layer'.
+Finding duplicate cells in `\fp_layer'.
+Finding identical cells in module `\fp_argmax'.
+Computing hashes of 395 cells of `\fp_argmax'.
+Finding duplicate cells in `\fp_argmax'.
+Finding identical cells in module `\fp_adder'.
+Computing hashes of 1700 cells of `\fp_adder'.
+Finding duplicate cells in `\fp_adder'.
+Removed a total of 0 cells.
+
+20.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+20.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp_relu..
+Finding unused cells or wires in module \fp_neuron..
+Finding unused cells or wires in module \fp_multiplier..
+Finding unused cells or wires in module \fp_network..
+Finding unused cells or wires in module \fp_layer..
+Finding unused cells or wires in module \fp_argmax..
+Finding unused cells or wires in module \fp_adder..
+
+20.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp_relu.
+Optimizing module fp_neuron.
+Optimizing module fp_multiplier.
+Optimizing module fp_network.
+Optimizing module fp_layer.
+Optimizing module fp_argmax.
+Optimizing module fp_adder.
+
+20.9. Finished fast OPT passes. (There is nothing left to do.)
+
+21. Printing statistics.
+
+=== fp_relu ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       71 wires
+      133 wire bits
+        6 public wires
+       68 public wire bits
+        6 ports
+       68 port bits
+       65 cells
+        1   AND2_X1
+       31   AND3_X1
+       32   DFF_X1
+        1   INV_X1
+
+=== fp_neuron ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      225 wires
+      876 wire bits
+       33 public wires
+      684 public wire bits
+       14 ports
+      324 port bits
+      192 cells
+       96   AND2_X1
+       96   DFF_X1
+        9 submodules
+        4   fp_adder
+        4   fp_multiplier
+        1   fp_relu
+
+=== fp_multiplier ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     3961 wires
+     4116 wire bits
+       10 public wires
+      165 public wire bits
+        7 ports
+      100 port bits
+     3951 cells
+      328   AND2_X1
+      114   AND3_X1
+        8   AND4_X1
+       10   AOI211_X1
+      347   AOI21_X1
+        4   AOI221_X1
+       27   AOI22_X1
+       98   DFF_X1
+      226   INV_X1
+        9   MUX2_X1
+      657   NAND2_X1
+       99   NAND3_X1
+       18   NAND4_X1
+      502   NOR2_X1
+       48   NOR3_X1
+       33   NOR4_X1
+       35   OAI211_X1
+      246   OAI21_X1
+        2   OAI221_X1
+        1   OAI22_X1
+        3   OAI33_X1
+      137   OR2_X1
+      114   OR3_X1
+        3   OR4_X1
+      443   XNOR2_X1
+      439   XOR2_X1
+
+=== fp_network ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      682 wires
+     3039 wire bits
+      106 public wires
+     2463 public wire bits
+       47 ports
+     1350 port bits
+      576 cells
+      288   AND2_X1
+      288   DFF_X1
+       26 submodules
+       12   fp_adder
+        1   fp_argmax
+        1   fp_layer
+       12   fp_multiplier
+
+=== fp_layer ===
+
+        +----------Local Count, excluding submodules.
+        | 
+       35 wires
+      903 wire bits
+       35 public wires
+      903 public wire bits
+       32 ports
+      900 port bits
+        4 submodules
+        4   fp_neuron
+
+=== fp_argmax ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      403 wires
+      497 wire bits
+        8 public wires
+      102 public wire bits
+        8 ports
+      102 port bits
+      395 cells
+        7   AND2_X1
+        3   AND3_X1
+        3   AND4_X1
+       16   AOI211_X1
+       31   AOI21_X1
+        2   AOI221_X1
+       22   AOI22_X1
+        3   DFF_X1
+       81   INV_X1
+       44   NAND2_X1
+        8   NAND3_X1
+        4   NAND4_X1
+       24   NOR2_X1
+        8   NOR3_X1
+        5   NOR4_X1
+       34   OAI211_X1
+       24   OAI21_X1
+        5   OAI221_X1
+        1   OAI222_X1
+       26   OAI22_X1
+        1   OAI33_X1
+        4   OR2_X1
+        1   OR3_X1
+       30   XNOR2_X1
+        8   XOR2_X1
+
+=== fp_adder ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     1674 wires
+     1866 wire bits
+       10 public wires
+      165 public wire bits
+        7 ports
+      100 port bits
+     1700 cells
+       62   AND2_X1
+       19   AND3_X1
+        4   AND4_X1
+       22   AOI211_X1
+      243   AOI21_X1
+       35   AOI221_X1
+        3   AOI222_X1
+       22   AOI22_X1
+       98   DFF_X1
+      161   INV_X1
+      141   MUX2_X1
+      159   NAND2_X1
+       33   NAND3_X1
+       20   NAND4_X1
+      143   NOR2_X1
+       28   NOR3_X1
+       27   NOR4_X1
+       66   OAI211_X1
+      214   OAI21_X1
+       10   OAI221_X1
+        1   OAI222_X1
+       19   OAI22_X1
+       10   OAI33_X1
+       52   OR2_X1
+        8   OR3_X1
+        2   OR4_X1
+       72   XNOR2_X1
+       26   XOR2_X1
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        | 
+   160227 fp_network
+     1700 fp_adder
+      395 fp_argmax
+      192   fp_neuron
+     1700     fp_adder
+     3951     fp_multiplier
+       65     fp_relu
+     3951 fp_multiplier
+
+        +----------Count including submodules.
+        | 
+   160084 wires
+   175971 wire bits
+      865 public wires
+    15716 public wire bits
+      559 ports
+     9520 port bits
+        - memories
+        - memory bits
+        - processes
+   160227 cells
+    11603   AND2_X1
+     3851   AND3_X1
+      339   AND4_X1
+      912   AOI211_X1
+    16551   AOI21_X1
+     1094   AOI221_X1
+       84   AOI222_X1
+     1394   AOI22_X1
+     6291   DFF_X1
+    10921   INV_X1
+     4200   MUX2_X1
+    22892   NAND2_X1
+     3704   NAND3_X1
+     1068   NAND4_X1
+    18084   NOR2_X1
+     2136   NOR3_X1
+     1685   NOR4_X1
+     2862   OAI211_X1
+    12904   OAI21_X1
+      341   OAI221_X1
+       29   OAI222_X1
+      586   OAI22_X1
+      365   OAI33_X1
+     5296   OR2_X1
+     3417   OR3_X1
+      140   OR4_X1
+    14450   XNOR2_X1
+    13028   XOR2_X1
+       26 submodules
+       12   fp_adder
+        1   fp_argmax
+        1   fp_layer
+       12   fp_multiplier
+
+22. Printing statistics.
+
+=== fp_relu ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+       71        - wires
+      133        - wire bits
+        6        - public wires
+       68        - public wire bits
+        6        - ports
+       68        - port bits
+       65   187.53 cells
+        1    1.064   AND2_X1
+       31    41.23   AND3_X1
+       32  144.704   DFF_X1
+        1    0.532   INV_X1
+
+   Chip area for module '\fp_relu': 187.530000
+     of which used for sequential elements: 144.704000 (77.16%)
+
+=== fp_neuron ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+      225        - wires
+      876        - wire bits
+       33        - public wires
+      684        - public wire bits
+       14        - ports
+      324        - port bits
+      192  536.256 cells
+       96  102.144   AND2_X1
+       96  434.112   DFF_X1
+        9        - submodules
+        4        -   fp_adder
+        4        -   fp_multiplier
+        1        -   fp_relu
+
+   Chip area for module '\fp_neuron': 536.256000
+     of which used for sequential elements: 434.112000 (80.95%)
+
+=== fp_multiplier ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     3961        - wires
+     4116        - wire bits
+       10        - public wires
+      165        - public wire bits
+        7        - ports
+      100        - port bits
+     3951  4.7E+03 cells
+      328  348.992   AND2_X1
+      114   151.62   AND3_X1
+        8   12.768   AND4_X1
+       10     13.3   AOI211_X1
+      347  369.208   AOI21_X1
+        4    6.384   AOI221_X1
+       27    35.91   AOI22_X1
+       98  443.156   DFF_X1
+      226  120.232   INV_X1
+        9   16.758   MUX2_X1
+      657  524.286   NAND2_X1
+       99  105.336   NAND3_X1
+       18    23.94   NAND4_X1
+      502  400.596   NOR2_X1
+       48   51.072   NOR3_X1
+       33    43.89   NOR4_X1
+       35    46.55   OAI211_X1
+      246  261.744   OAI21_X1
+        2    3.192   OAI221_X1
+        1     1.33   OAI22_X1
+        3    5.586   OAI33_X1
+      137  145.768   OR2_X1
+      114   151.62   OR3_X1
+        3    4.788   OR4_X1
+      443  707.028   XNOR2_X1
+      439  700.644   XOR2_X1
+
+   Chip area for module '\fp_multiplier': 4695.698000
+     of which used for sequential elements: 443.156000 (9.44%)
+
+=== fp_network ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+      682        - wires
+     3039        - wire bits
+      106        - public wires
+     2463        - public wire bits
+       47        - ports
+     1350        - port bits
+      576 1.61E+03 cells
+      288  306.432   AND2_X1
+      288  1.3E+03   DFF_X1
+       26        - submodules
+       12        -   fp_adder
+        1        -   fp_argmax
+        1        -   fp_layer
+       12        -   fp_multiplier
+
+   Chip area for module '\fp_network': 1608.768000
+     of which used for sequential elements: 1302.336000 (80.95%)
+
+=== fp_layer ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+       35        - wires
+      903        - wire bits
+       35        - public wires
+      903        - public wire bits
+       32        - ports
+      900        - port bits
+        4        - submodules
+        4        -   fp_neuron
+
+   Chip area for module '\fp_layer': 0.000000
+     of which used for sequential elements: 0.000000 (nan%)
+
+=== fp_argmax ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+      403        - wires
+      497        - wire bits
+        8        - public wires
+      102        - public wire bits
+        8        - ports
+      102        - port bits
+      395  426.398 cells
+        7    7.448   AND2_X1
+        3     3.99   AND3_X1
+        3    4.788   AND4_X1
+       16    21.28   AOI211_X1
+       31   32.984   AOI21_X1
+        2    3.192   AOI221_X1
+       22    29.26   AOI22_X1
+        3   13.566   DFF_X1
+       81   43.092   INV_X1
+       44   35.112   NAND2_X1
+        8    8.512   NAND3_X1
+        4     5.32   NAND4_X1
+       24   19.152   NOR2_X1
+        8    8.512   NOR3_X1
+        5     6.65   NOR4_X1
+       34    45.22   OAI211_X1
+       24   25.536   OAI21_X1
+        5     7.98   OAI221_X1
+        1    2.128   OAI222_X1
+       26    34.58   OAI22_X1
+        1    1.862   OAI33_X1
+        4    4.256   OR2_X1
+        1     1.33   OR3_X1
+       30    47.88   XNOR2_X1
+        8   12.768   XOR2_X1
+
+   Chip area for module '\fp_argmax': 426.398000
+     of which used for sequential elements: 13.566000 (3.18%)
+
+=== fp_adder ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1674        - wires
+     1866        - wire bits
+       10        - public wires
+      165        - public wire bits
+        7        - ports
+      100        - port bits
+     1700  2239.72 cells
+       62   65.968   AND2_X1
+       19    25.27   AND3_X1
+        4    6.384   AND4_X1
+       22    29.26   AOI211_X1
+      243  258.552   AOI21_X1
+       35    55.86   AOI221_X1
+        3    6.384   AOI222_X1
+       22    29.26   AOI22_X1
+       98  443.156   DFF_X1
+      161   85.652   INV_X1
+      141  262.542   MUX2_X1
+      159  126.882   NAND2_X1
+       33   35.112   NAND3_X1
+       20     26.6   NAND4_X1
+      143  114.114   NOR2_X1
+       28   29.792   NOR3_X1
+       27    35.91   NOR4_X1
+       66    87.78   OAI211_X1
+      214  227.696   OAI21_X1
+       10    15.96   OAI221_X1
+        1    2.128   OAI222_X1
+       19    25.27   OAI22_X1
+       10    18.62   OAI33_X1
+       52   55.328   OR2_X1
+        8    10.64   OR3_X1
+        2    3.192   OR4_X1
+       72  114.912   XNOR2_X1
+       26   41.496   XOR2_X1
+
+   Chip area for module '\fp_adder': 2239.720000
+     of which used for sequential elements: 443.156000 (19.79%)
+
+=== design hierarchy ===
+
+        +----------Count including submodules.
+        |        +-Area including submodules.
+        |        | 
+   160227 1.99E+05 fp_network
+     1700  2239.72 fp_adder
+      395  426.398 fp_argmax
+      192  536.256   fp_neuron
+     1700  2239.72     fp_adder
+     3951  4.7E+03     fp_multiplier
+       65   187.53     fp_relu
+     3951  4.7E+03 fp_multiplier
+
+        +----------Count including submodules.
+        |        +-Area including submodules.
+        |        | 
+   160084        - wires
+   175971        - wire bits
+      865        - public wires
+    15716        - public wire bits
+      559        - ports
+     9520        - port bits
+        -        - memories
+        -        - memory bits
+        -        - processes
+   160227 1.99E+05 cells
+    11603 1.23E+04   AND2_X1
+     3851  5121.83   AND3_X1
+      339  541.044   AND4_X1
+      912  1212.96   AOI211_X1
+    16551 1.76E+04   AOI21_X1
+     1094 1.75E+03   AOI221_X1
+       84  178.752   AOI222_X1
+     1394  1854.02   AOI22_X1
+     6291 2.84E+04   DFF_X1
+    10921 5.81E+03   INV_X1
+     4200   7820.4   MUX2_X1
+    22892 1.83E+04   NAND2_X1
+     3704 3.94E+03   NAND3_X1
+     1068  1420.44   NAND4_X1
+    18084 1.44E+04   NOR2_X1
+     2136 2.27E+03   NOR3_X1
+     1685  2241.05   NOR4_X1
+     2862  3806.46   OAI211_X1
+    12904 1.37E+04   OAI21_X1
+      341  544.236   OAI221_X1
+       29   61.712   OAI222_X1
+      586   779.38   OAI22_X1
+      365   679.63   OAI33_X1
+     5296 5.63E+03   OR2_X1
+     3417  4544.61   OR3_X1
+      140   223.44   OR4_X1
+    14450  23062.2   XNOR2_X1
+    13028 2.08E+04   XOR2_X1
+       26 1.98E+05 submodules
+       12 6.27E+04   fp_adder
+        1  426.398   fp_argmax
+        1 1.14E+05   fp_layer
+       12 1.31E+05   fp_multiplier
+
+   Chip area for top module '\fp_network': 199122.014000
+     of which used for sequential elements: 28447.902000 (14.29%)
+
+23. Executing Verilog backend.
+
+23.1. Executing BMUXMAP pass.
+
+23.2. Executing DEMUXMAP pass.
+Dumping module `\fp_adder'.
+Dumping module `\fp_argmax'.
+Dumping module `\fp_layer'.
+Dumping module `\fp_multiplier'.
+Dumping module `\fp_network'.
+Dumping module `\fp_neuron'.
+Dumping module `\fp_relu'.
+
+24. Generating Graphviz representation of design.
+Writing dot description to `synthesis/top_gate.dot'.
+Dumping module fp_network to page 1.
+Exec: dot -Tsvg 'synthesis/top_gate.dot' > 'synthesis/top_gate.svg.new' && mv 'synthesis/top_gate.svg.new' 'synthesis/top_gate.svg'
+
+Warnings: 1 unique messages, 1 total
+End of script. Logfile hash: 251691944a, time: 4.16s, user: 1.09s, system: 0.05s, MEM: 100.89 MB peak
+Yosys 0.67+post (git sha1 b8e7da6f40ae8f552c116bf6c359b07c6533e159, Release, AppleClang clang++ 21.0.0.21000099)
+Time spent: 56% 1x abc (2 sec), 18% 1x show (0 sec), ...

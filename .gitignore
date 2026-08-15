@@ -1,21 +1,27 @@
-# Python
-__pycache__/
-*.pyc
-
-# Virtual Environment
-venv/
-
-# VS Code
-.vscode/
+# Simulation executables
+sim/fp_adder_tb
+sim/fp_network_tb
 
 # macOS
 .DS_Store
 
-# Python cache
-.pytest_cache/
+# Python
+__pycache__/
+*.pyc
+venv/
 
-# Jupyter
-.ipynb_checkpoints/
+# Magic source/build
+magic/
 
-# Generated files
-*.log
+# OpenROAD temporary files
+Physical_Design/tmp/
+Physical_Design/logs/
+# Simulation executables
+sim/fp_adder_tb
+sim/fp_network_tb
+
+# Large OpenROAD physical-design artifacts
+physical_design/results/*.odb
+physical_design/results/*.def
+physical_design/results/*.gds
+physical_design/gds/*.gds
